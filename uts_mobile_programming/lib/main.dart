@@ -11,15 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Ni Hao Chinese Food Delivery",
+      title: "Dinasty Kitchen Delivery App",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      //ini tempat buat arahin route nya
-      routes: {
-        "/": (context) => Home()
-      },
+      home: Home(), 
     );
   }
 }

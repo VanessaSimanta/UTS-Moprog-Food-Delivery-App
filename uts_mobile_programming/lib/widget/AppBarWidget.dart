@@ -7,7 +7,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.yellowAccent,
       centerTitle: true,
       title: const Text(
-        'Ni Hao Chinese Food Delivery',
+        'Dynasty Kitchen Delivery App',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 25,
@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           return IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
-              Scaffold.of(context).openDrawer();  // Opens the Drawer
+              Scaffold.of(context).openDrawer();  
             },
           );
         },

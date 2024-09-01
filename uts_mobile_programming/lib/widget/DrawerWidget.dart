@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_programming/pages/home.dart';
 
 class Drawerwidget extends StatelessWidget {
   @override
@@ -37,7 +38,12 @@ class Drawerwidget extends StatelessWidget {
           ),
           title: const Text('Home'),  
           onTap: () {
-            
+            //buat pindah ke home saat di press
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Home(),
+              ),
+            );
           },
         ),
         ListTile(
@@ -51,6 +57,7 @@ class Drawerwidget extends StatelessWidget {
             
           },
         ),
+        const Divider(color: Colors.black,),
         ListTile(
           leading: const Icon(
             Icons.logout,  
