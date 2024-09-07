@@ -11,6 +11,8 @@ class PopularItemWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
         child: Row(
           children: [
+            //menampilkan popular menu dari urutan 1 - 5
+            for(int i = 0; i < 5; i++)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
               child: Container(
