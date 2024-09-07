@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
       title: "Dinasty Kitchen Delivery App",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: const Color(0xFFFFF8F0),
       ),
-      home: Home(), 
+      home: const Home(), 
     );
   }
 }

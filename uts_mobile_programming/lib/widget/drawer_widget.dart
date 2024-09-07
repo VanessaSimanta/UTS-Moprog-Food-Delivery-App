@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/pages/home.dart';
 
 class Drawerwidget extends StatelessWidget {
+  const Drawerwidget({super.key});
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -9,7 +10,7 @@ class Drawerwidget extends StatelessWidget {
       children: [
         const DrawerHeader(
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: Color(0xFFFF8811),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,  
@@ -22,7 +23,7 @@ class Drawerwidget extends StatelessWidget {
               Text(
                 'Your Name',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFFFF8F0),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -33,7 +34,7 @@ class Drawerwidget extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.home,  
-            color: Color.fromARGB(255, 255, 136, 0),  
+            color: Color(0xFFFF8811),  
             size: 30.0,  
           ),
           title: const Text('Home'),  
@@ -41,7 +42,7 @@ class Drawerwidget extends StatelessWidget {
             //buat pindah ke home saat di press
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Home(),
+                builder: (context) => const Home(),
               ),
             );
           },
@@ -49,7 +50,7 @@ class Drawerwidget extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.person,  
-            color: Color.fromARGB(255, 255, 136, 0),  
+            color: Color(0xFFFF8811),  
             size: 30.0,  
           ),
           title: const Text('My Account'),  
@@ -61,7 +62,7 @@ class Drawerwidget extends StatelessWidget {
         ListTile(
           leading: const Icon(
             Icons.logout,  
-            color: Color.fromARGB(255, 255, 136, 0),  
+            color: Color(0xFFFF8811),  
             size: 30.0,  
           ),
           title: const Text('LogOut'),  
