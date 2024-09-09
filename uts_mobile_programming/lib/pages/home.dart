@@ -5,6 +5,7 @@ import 'package:uts_mobile_programming/widget/popular_item_widget.dart';
 import 'package:uts_mobile_programming/widget/newest_item.dart';
 import 'package:uts_mobile_programming/pages/popular_item.dart';
 import 'package:uts_mobile_programming/pages/newest_item.dart';
+import 'package:uts_mobile_programming/pages/search.dart'; 
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -89,6 +90,43 @@ class _HomeState extends State<Home> {
                   );
                 }).toList(),
               ),
+                  // Search bar
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SearchScreen()),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 237, 189, 149).withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.search, color: Colors.orange),
+                        SizedBox(width: 8.0),
+                        Text(
+                          'Find Your Favorite Here !',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 10),
                 child: Row(
@@ -105,7 +143,6 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.only(right: 16.0),
                       child: GestureDetector(
                         onTap: () {
-                          // Add your navigation logic here
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => const PopularItem()), 
