@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NewestItem extends StatelessWidget {
-  const NewestItem({super.key});
+class NewestItemWidget extends StatelessWidget {
+  const NewestItemWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
