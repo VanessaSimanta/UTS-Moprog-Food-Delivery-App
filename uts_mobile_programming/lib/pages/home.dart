@@ -57,9 +57,9 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 CarouselSlider(
                   items: [
-                    'assets/slider1.png',
-                    'assets/slider2.png',
-                    'assets/slider3.png'
+                    'assets/pict1.jpeg',
+                    'assets/pict2.jpeg',
+                    'assets/pict3.jpeg',
                   ].map((imagePath) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
