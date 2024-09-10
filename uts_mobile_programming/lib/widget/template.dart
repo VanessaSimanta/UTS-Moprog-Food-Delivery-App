@@ -1,33 +1,39 @@
-import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
-import 'package:uts_mobile_programming/widget/nav_bar.dart';
+// import 'package:flutter/material.dart';
+// import 'package:uts_mobile_programming/pages/home.dart';
+// import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
+// import 'package:uts_mobile_programming/widget/nav_bar.dart';
 
-class DefaultTemplate extends StatefulWidget {
-  final Widget body; // Konten halaman yang berubah-ubah
-  const DefaultTemplate({super.key, required this.body});
+// class DefaultTemplate extends StatefulWidget {
+//   final Widget body;
+//   const DefaultTemplate({super.key, required this.body});
 
-  @override
-  State<DefaultTemplate> createState() => _DefaultTemplateState();
-}
+//   @override
+//   State<DefaultTemplate> createState() => _DefaultTemplateState();
+// }
 
-class _DefaultTemplateState extends State<DefaultTemplate> {
-  int _currentIndex = 0;
+// class _DefaultTemplateState extends State<DefaultTemplate> {
+//   int _currentIndex = 0;
+//   final List<Widget> _pages = [
+//     Home(),
+//     // Add your other pages here if needed
+//   ];
 
-  void _onTabSelected(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWidget(), // AppBar di bagian atas
-      body: SafeArea(child: widget.body), // Body yang bisa diubah-ubah
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: _currentIndex,
-        onTabSelected: _onTabSelected,
-      ), // BottomNavBar di bagian bawah
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: const AppBarWidget(),
+//       body: IndexedStack(
+//         index: _currentIndex,
+//         children: _pages,
+//       ),
+//       bottomNavigationBar: CustomNavBar(
+//         selectedIndex: _currentIndex,
+//         onTabSelected: (index) {
+//           setState(() {
+//             _currentIndex = index;
+//           });
+//         },
+//       ),
+//     );
+//   }
+// }

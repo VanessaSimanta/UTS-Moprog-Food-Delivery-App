@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/widget/template.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
+import 'package:uts_mobile_programming/widget/nav_bar.dart';
 
 class NewestItem extends StatelessWidget {
   const NewestItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTemplate(
+    return Scaffold(
+      appBar: AppBarWidget(),
       body: SafeArea(
         child :SingleChildScrollView(
           scrollDirection: Axis.vertical, 
