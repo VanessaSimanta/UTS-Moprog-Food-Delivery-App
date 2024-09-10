@@ -106,6 +106,51 @@ class HomePageContent extends StatelessWidget {
                 );
               }).toList(),
             ),
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(30.0),
+      boxShadow: [
+        BoxShadow(
+          color: const Color.fromARGB(255, 237, 189, 149).withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 7,
+          offset: const Offset(0, 3),
+        ),
+      ],
+    ),
+    child: Row(
+      children: [
+        const Icon(Icons.search, color: Colors.orange),
+        const SizedBox(width: 8.0),
+        Expanded(
+          child: TextField(
+            onSubmitted: (value) {
+              if (value.isNotEmpty) {
+                // Hanya berpindah ke SearchScreen jika sudah mengetik dan menekan enter
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchScreen()),
+                );
+              }
+            },
+            decoration: const InputDecoration(
+              hintText: 'Find Your Favorite Here!',
+              border: InputBorder.none,
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
+            style: const TextStyle(color: Colors.black),
+            cursorColor: Colors.orange,
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 10),
               child: Row(

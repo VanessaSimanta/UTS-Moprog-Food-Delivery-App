@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_programming/pages/help_Center.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({super.key});
@@ -23,7 +24,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             color: Color(0xFFFFF8F0),
           ),
           onPressed: () {
-           
+            Navigator.push(
+                  context,
+                    MaterialPageRoute(builder: (context) => const HelpCenter()), 
+                        );
           },
         ),
         IconButton(
