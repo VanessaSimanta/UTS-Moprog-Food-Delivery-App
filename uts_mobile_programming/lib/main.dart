@@ -11,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Dinasty Kitchen Delivery App",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFFFF8F0),
-      ),
-      home: const Home(), 
-    );
+        title: "Dinasty Kitchen Delivery App",
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFFFFF8F0),
+        ),
+        home: const Home());
   }
 }
