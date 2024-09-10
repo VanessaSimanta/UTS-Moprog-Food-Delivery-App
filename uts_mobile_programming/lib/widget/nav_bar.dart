@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:uts_mobile_programming/pages/home.dart';
+import 'package:uts_mobile_programming/pages/menu_screen.dart';
 
 
 class CustomNavBar extends StatelessWidget {
@@ -34,7 +35,10 @@ class CustomNavBar extends StatelessWidget {
             );
             break;
           case 1:
-            //
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MenuScreen()),
+            );
             break;
           default:
             break;
