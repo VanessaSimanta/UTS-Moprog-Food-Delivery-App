@@ -14,7 +14,7 @@ class PromotionPage extends StatelessWidget {
             imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
             title: 'Promo 1 - Buy 1 Get 1 Free',
             description:
-                'Nikmati promosi spesial, beli 1 kopi dapat 1 kopi gratis untuk semua jenis minuman!',
+                'Nikmati promosi spesial, beli 1 paket dapat 1 minuman gratis!',
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
@@ -24,9 +24,9 @@ class PromotionPage extends StatelessWidget {
           ),
           PromotionCard(
             imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
-            title: 'Promo 2 - Cashback 50%',
+            title: 'Promo 2 - Cashback 25%',
             description:
-                'Dapatkan cashback 50% untuk setiap pembelian kopi menggunakan aplikasi ini.',
+                'Dapatkan cashback 25% untuk setiap pembelian makanan menggunakan aplikasi ini.',
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
@@ -38,7 +38,7 @@ class PromotionPage extends StatelessWidget {
             imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
             title: 'Promo 3 - Diskon 30%',
             description:
-                'Diskon spesial 30% untuk pelanggan baru, berlaku untuk semua menu kopi.',
+                'Diskon spesial 30% untuk pelanggan baru, berlaku untuk semua makanan.',
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
