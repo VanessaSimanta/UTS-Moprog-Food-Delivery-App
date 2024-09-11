@@ -23,9 +23,9 @@ class CustomNavBar extends StatelessWidget {
       tabBackgroundColor: const Color(0xFF9DD9D2).withOpacity(0.1),
       selectedIndex: selectedIndex,
       onTabChange: (index) {
-         if (index != selectedIndex) {
+        if (index != selectedIndex) {
           onTabSelected(index);
-         }
+        }
       },
       tabs: const [
         GButton(
@@ -37,8 +37,8 @@ class CustomNavBar extends StatelessWidget {
           text: 'Menu',
         ),
         GButton(
-          icon: Icons.shopping_cart,
-          text: 'Cart',
+          icon: Icons.discount,
+          text: 'Promo',
         ),
         GButton(
           icon: Icons.person,
