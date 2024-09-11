@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
     HomePageContent(),
     MenuScreen(),
     PromotionPage(),
-    //nanti tambahin lg
+    HomePageContent(), //Nanti diganti profile page, hindarin error dulu
   ];
 
   @override
