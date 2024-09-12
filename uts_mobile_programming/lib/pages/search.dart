@@ -6,12 +6,14 @@ class MenuItem {
   final String description;
   final double rating;
   final String imageUrl;
+  final double price; // Tambahkan properti harga
 
   MenuItem({
     required this.name,
     required this.description,
     required this.rating,
     required this.imageUrl,
+    required this.price, // Tambahkan harga pada konstruktor
   });
 }
 
@@ -22,58 +24,67 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<MenuItem> menuItems = [
       MenuItem(
-        name: 'Nasi Udang Telur Asin',
-        description: 'Delicious beef burger with lettuce and cheese.',
-        rating: 4.5,
-        imageUrl: 'https://asset.kompas.com/crops/yFCpuKxNvIx9uSxfduuOjMeL8a0=/183x185:784x585/750x500/data/photo/2022/05/19/6285d37131c23.jpg',
-      ),
-      MenuItem(
-        name: 'Nasi Udang Cabai Garam',
-        description: 'Cheesy pizza with pepperoni and mushrooms.',
-        rating: 4.7,
-        imageUrl: 'https://via.placeholder.com/150',
-      ),
-      MenuItem(
-        name: 'Nasi Udang Saus Padang',
-        description: 'Fresh sushi with tuna and avocado.',
-        rating: 4.8,
-        imageUrl: 'https://via.placeholder.com/150',
-      ),
-      MenuItem(
         name: 'Nasi Ayam Telur Asin',
-        description: 'Delicious beef burger with lettuce and cheese.',
-        rating: 4.5,
-        imageUrl: 'https://via.placeholder.com/150',
-      ),
-      MenuItem(
-        name: 'Fuyunghai',
-        description: 'Cheesy pizza with pepperoni and mushrooms.',
-        rating: 4.7,
-        imageUrl: 'https://via.placeholder.com/150',
-      ),
-      MenuItem(
-        name: 'Muntahu',
-        description: 'Fresh sushi with tuna and avocado.',
+        description: 'Delicious nasi udang with telur asin.',
         rating: 4.8,
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
       ),
       MenuItem(
-        name: 'Pakcoy',
-        description: 'Delicious beef burger with lettuce and cheese.',
-        rating: 4.5,
-        imageUrl: 'https://via.placeholder.com/150',
-      ),
-      MenuItem(
-        name: 'Dimsum',
-        description: 'Cheesy pizza with pepperoni and mushrooms.',
+        name: 'Nasi Ayam Cabai Garam',
+        description: 'Spicy nasi udang cabai garam.',
         rating: 4.7,
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
       ),
       MenuItem(
-        name: 'Tomyam',
-        description: 'Fresh sushi with tuna and avocado.',
+        name: 'Nasi Ayam Kremes',
+        description: 'Nasi udang dengan saus padang khas.',
+        rating: 4.6,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Bakar',
+        description: 'Nasi ayam telur asin yang nikmat.',
+        rating: 4.6,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Hainan',
+        description: 'Fuyunghai dengan saus asam manis.',
+        rating: 4.3,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Lada Hitam',
+        description: 'Muntahu lezat dengan bumbu khas.',
+        rating: 4.5,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Kungpau',
+        description: 'Muntahu lezat dengan bumbu khas.',
+        rating: 4.2,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Sambal Matah',
+        description: 'Muntahu lezat dengan bumbu khas.',
+        rating: 4.2,
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Teriyaki',
+        description: 'Muntahu lezat dengan bumbu khas.',
         rating: 4.8,
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: 'assets/search1.jpg',
+        price: 23000,
       ),
     ];
 
@@ -144,10 +155,10 @@ class SearchScreen extends StatelessWidget {
                     contentPadding: const EdgeInsets.all(16.0),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10.0), // Rounded corners for image
-                      child: Image.network(
+                      child: Image.asset(
                         item.imageUrl,
-                        width: 100,
-                        height: 400,
+                        width: 100,  // Set width sama dengan height
+                        height: 100, // Set height sama dengan width untuk jadi kotak
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -159,6 +170,14 @@ class SearchScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(item.description),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          'Price: Rp ${item.price.toStringAsFixed(0)}', // Menampilkan harga
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
                         const SizedBox(height: 8.0),
                         Row(
                           children: [
@@ -188,6 +207,6 @@ class SearchScreen extends StatelessWidget {
 
 void main() {
   runApp(MaterialApp(
-    home: SearchScreen(),
+    home: const SearchScreen(),
   ));
 }
