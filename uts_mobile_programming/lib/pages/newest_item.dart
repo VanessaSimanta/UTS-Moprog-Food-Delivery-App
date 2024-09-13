@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
-import 'package:uts_mobile_programming/widget/nav_bar.dart';
+
 
 class NewestItem extends StatelessWidget {
   const NewestItem({super.key});
