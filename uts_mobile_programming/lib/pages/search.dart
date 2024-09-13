@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/pages/home.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class MenuItem {
   final String name;
@@ -89,9 +90,15 @@ class SearchScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu'),
-        backgroundColor: Colors.orange,
+      appBar: const AppBarWidget(
+        title: Text(
+          "Menu",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: false,
+        actions: [],
       ),
       body: Column(
         children: [

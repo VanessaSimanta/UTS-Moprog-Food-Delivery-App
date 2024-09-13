@@ -20,10 +20,18 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: showBackArrow
-        ? IconButton(onPressed: () => Navigator.pop, icon: Icon(Icons.keyboard_arrow_left, size: 30,))
-        : leadingIcon != null? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon)) : null,
-      title : title,
-      actions : actions,
+        ? IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.keyboard_arrow_left, size: 30),
+          )
+        : leadingIcon != null
+          ? IconButton(
+              onPressed: leadingOnPressed,
+              icon: Icon(leadingIcon),
+            )
+          : null,
+      title: title,
+      actions: actions,
       backgroundColor: const Color(0xFFFF8811),
     );
   }
