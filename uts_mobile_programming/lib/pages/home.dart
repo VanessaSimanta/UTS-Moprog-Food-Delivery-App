@@ -9,6 +9,8 @@ import 'package:uts_mobile_programming/widget/newest_item.dart';
 import 'package:uts_mobile_programming/pages/popular_item.dart';
 import 'package:uts_mobile_programming/pages/newest_item.dart';
 import 'package:uts_mobile_programming/pages/search.dart';
+import 'package:uts_mobile_programming/pages/account.dart';
+import 'package:uts_mobile_programming/pages/help_Center.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,13 +26,12 @@ class _HomeState extends State<Home> {
     HomePageContent(),
     MenuScreen(),
     PromotionPage(),
-    HomePageContent(), //Nanti diganti profile page, hindarin error dulu
+    Account(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(),
       body: _pages[_currentIndex],
       bottomNavigationBar: CustomNavBar(
         selectedIndex: _currentIndex,
@@ -47,8 +48,34 @@ class _HomeState extends State<Home> {
 class HomePageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBarWidget(
+        showBackArrow: false,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.help,
+              color: Color(0xFFFFF8F0),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HelpCenter()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.settings,
+              color: Color(0xFFFFF8F0),
+            ),
+            onPressed: () {
+              // Add settings action here
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
