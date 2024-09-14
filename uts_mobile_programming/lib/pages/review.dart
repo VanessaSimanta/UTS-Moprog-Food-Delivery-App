@@ -7,9 +7,9 @@ class ReviewScreen extends StatelessWidget {
 
   final List<String> reviews = [
     'Delicious!',
-    'The sauce is amazing.',
-    'Could be spicier.',
-    'Good value for money.'
+    'The taste is amazing.',
+    'Could be better.',
+    'Worth to buy!'
   ];
 
   @override
