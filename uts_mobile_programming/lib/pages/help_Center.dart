@@ -34,7 +34,7 @@ class HelpCenter extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  ' Ada pertanyaan atau keluhan ? Kami siap bantu !',
+                  'Ada pertanyaan atau keluhan ? Kami siap bantu !',
                   style: TextStyle(
                     fontSize: screenWidth * 0.07,
                     color: const Color.fromARGB(224, 230, 198, 125),
@@ -60,35 +60,49 @@ class HelpCenter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Contact Us Section
-                    Text(
-                      'Contact Us',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.06, // Ukuran font disesuaikan dengan layar
-                        fontWeight: FontWeight.bold,
-                      ),
+                    // Contact Us Section with Icons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.contact_support, size: screenWidth * 0.1, color: Colors.orange),
+                        SizedBox(width: screenWidth * 0.02),
+                        Text(
+                          'Contact Us',
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.06, // Ukuran font disesuaikan dengan layar
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
+                    Divider(color: Colors.orange, thickness: 2), // Pembatas setelah "Contact Us"
                     SizedBox(height: screenHeight * 0.02), // Jarak vertikal disesuaikan
-                    Text(
-                      'Contact Us For Help:',
-                      style: TextStyle(fontSize: screenWidth * 0.04), // Ukuran teks disesuaikan
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    ListTile(
-                      leading: const Icon(Icons.phone, color: Colors.orange),
-                      title: const Text('Phone'),
-                      subtitle: const Text('0822-123-7768'),
-                      onTap: () {
-                        // Implement phone call functionality
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.email, color: Colors.orange),
-                      title: const Text('Email'),
-                      subtitle: const Text('helpcenter@gmail.com'),
-                      onTap: () {
-                        // Implement email functionality
-                      },
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.orange[50],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: const Icon(Icons.phone, color: Colors.orange),
+                            title: const Text('Phone'),
+                            subtitle: const Text('0822-123-7768'),
+                            onTap: () {
+                              // Implement phone call functionality
+                            },
+                          ),
+                          Divider(),
+                          ListTile(
+                            leading: const Icon(Icons.email, color: Colors.orange),
+                            title: const Text('Email'),
+                            subtitle: const Text('helpcenter@gmail.com'),
+                            onTap: () {
+                              // Implement email functionality
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: screenHeight * 0.04), // Jarak vertikal disesuaikan
 
@@ -100,10 +114,12 @@ class HelpCenter extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Divider(color: Colors.orange, thickness: 2), // Divider after Feedback Form title
                     SizedBox(height: screenHeight * 0.02),
                     Text(
-                      'Untuk kritik dan saran serta pertanyaan lebih lanjut bisa mengisi data dibawah ini. Feedback kalian sangat membantu kami untuk terus berkembang!.',
+                      'Untuk kritik dan saran serta pertanyaan lebih lanjut bisa mengisi data di bawah ini. Feedback kalian sangat membantu kami untuk terus berkembang!.',
                       style: TextStyle(fontSize: screenWidth * 0.04),
+                      textAlign: TextAlign.justify,
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     TextField(
@@ -140,7 +156,7 @@ class HelpCenter extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.04),
 
-                    // FAQ Section
+                    // FAQ Section with Cards
                     Text(
                       'FAQ',
                       style: TextStyle(
@@ -148,6 +164,7 @@ class HelpCenter extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Divider(color: Colors.orange, thickness: 2), // Divider after FAQ title
                     SizedBox(height: screenHeight * 0.02),
                     ..._buildFAQ(),
                   ],
@@ -160,16 +177,36 @@ class HelpCenter extends StatelessWidget {
     );
   }
 
+  // Function to create FAQ section with Cards
   List<Widget> _buildFAQ() {
     final faqList = [
-      {'question': 'How can I reset my password?', 'answer': 'To reset your password, go to the login page and click on "Forgot Password". Follow the instructions to reset your password.'},
-      {'question': 'Where can I find the user manual?', 'answer': 'The user manual can be found on our website under the "Support" section.'},
-      {'question': 'How do I contact customer support?', 'answer': 'You can contact customer support by phone at 0822-123-7768 or via email at helpcenter@gmail.com.'},
+      {
+        'question': 'Bagaimana jika pesanan yang dikirim tidak sesuai?',
+        'answer': 'Anda dapat langsung menghubungi customer service kami di nomor yang sudah tertera. Dengan sigap kami akan mengatur ulang pesanan anda.'
+      },
+      {
+        'question': 'Apakah ada batasan area pengiriman?',
+        'answer': 'Ya, layanan kami hanya mencakup area tertentu. Anda dapat memeriksa area pengiriman kami melalui aplikasi atau situs web kami.'
+      },
+      {
+        'question': 'Bagaimana cara menggunakan kode promo?',
+        'answer': 'Anda dapat claim di menu promo yang kami sediakan dan nikmati berbagai promo jika sudah sering berlangganan.'
+      },
+      {
+        'question': 'Apa yang harus dilakukan jika pesanan terlambat?',
+        'answer': 'Jika pesanan Anda terlambat, Anda dapat menghubungi layanan pelanggan kami melalui telepon atau email untuk mendapatkan bantuan lebih lanjut.'
+      },
+      {
+        'question': 'Apakah ada biaya tambahan untuk pengiriman cepat?',
+        'answer': 'Ya, pengiriman cepat akan dikenakan biaya tambahan yang akan diinformasikan pada saat Anda memilih opsi pengiriman tersebut.'
+      },
     ];
 
     return faqList.map((faq) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
+      return Card(
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ExpansionTile(
           title: Text(
             faq['question']!,
