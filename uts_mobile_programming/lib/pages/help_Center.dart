@@ -107,13 +107,15 @@ class HelpCenter extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.04), // Jarak vertikal disesuaikan
 
                     // Feedback Form Section
-                    Text(
-                      'Feedback Form',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.06,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Center(
+                      child: Text(
+                        'Feedback Form',
+                          style: TextStyle(
+                          fontSize: screenWidth * 0.06,
+                          fontWeight: FontWeight.bold,
+                          ),
+                           ),
+                            ),
                     Divider(color: Colors.orange, thickness: 2), // Divider after Feedback Form title
                     SizedBox(height: screenHeight * 0.02),
                     Text(
@@ -202,33 +204,43 @@ class HelpCenter extends StatelessWidget {
       },
     ];
 
-    return faqList.map((faq) {
-      return Card(
-        margin: const EdgeInsets.symmetric(vertical: 10.0),
-        elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: ExpansionTile(
-          title: Text(
-            faq['question']!,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(faq['answer']!),
-            ),
-          ],
+   return faqList.map((faq) {
+  return Card(
+    margin: const EdgeInsets.symmetric(vertical: 10.0),
+    elevation: 5,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    color: Colors.orange[100], // Mengatur warna kotak pertanyaan selain abu-abu
+    child: ExpansionTile(
+      title: Text(
+        faq['question']!,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
-      );
-    }).toList();
-  }
-}
+      ),
+      iconColor: Colors.orange, // Warna ikon
+      textColor: Colors.orange[900], // Warna teks pertanyaan
+      collapsedTextColor: Colors.black, // Warna teks saat collapsed
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            faq['answer']!,
+            style: const TextStyle(color: Colors.black), // Warna teks jawaban
+          ),
+        ),
+      ],
+    ),
+  );
+}).toList();
+
 
 void main() {
   runApp(const MaterialApp(
     home: HelpCenter(),
   ));
+}
+  }
 }
