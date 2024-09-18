@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 
-class ReviewScreen extends StatelessWidget {
-  final Map<String, dynamic> menuItem;
+class Review {
+  final String reviewerName;
+  final String reviewText;
 
-  ReviewScreen({required this.menuItem});
+  Review({required this.reviewerName, required this.reviewText});
+}
 
-  final List<String> reviews = [
-    'Delicious!',
-    'The taste is amazing.',
-    'Could be better.',
-    'Worth to buy!'
-  ];
+class ReviewList extends StatelessWidget {
+  final List<Review> reviews;
+
+  ReviewList({required this.reviews});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Reviews for ${menuItem['name']}'),
-      ),
-      body: ListView.builder(
-        itemCount: reviews.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(reviews[index]),
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: reviews.length,
+      itemBuilder: (context, index) {
+        final review = reviews[index];
+        return ListTile(
+          leading: Icon(Icons.person),
+          title: Text(review.reviewerName),
+          subtitle: Text(review.reviewText),
+        );
+      },
     );
   }
 }

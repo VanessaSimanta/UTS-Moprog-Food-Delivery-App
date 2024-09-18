@@ -21,12 +21,13 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFFFFF8F0),
         ),
         routes: {
-          '/detailMenu': (context) => DetailMenuScreen(
-              menuItem: {'name': 'Example Menu', 'price': '10000'}),
-          '/rating': (context) =>
-              RatingScreen(menuItem: {'name': 'Example Menu', 'rating': 5}),
-          '/review': (context) => ReviewScreen(
-              menuItem: {'name': 'Example Menu', 'review': 'Good food!'}),
+          '/detailMenu': (context) => DetailMenuScreen(menuItem: {
+                'name': 'Example Menu',
+                'price': '10000',
+                'imageURL': 'https://via.placeholder.com/150',
+                'rating': 4.5,
+                'reviews': 20,
+              }),
         },
         home: Login());
   }
