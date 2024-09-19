@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
+import 'package:uts_mobile_programming/pages/login.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -94,7 +95,13 @@ class _AccountState extends State<Account> {
 
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 255, 231, 197),
                     shape: RoundedRectangleBorder(

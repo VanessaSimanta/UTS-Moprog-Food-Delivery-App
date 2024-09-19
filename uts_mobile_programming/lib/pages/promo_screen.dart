@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class PromotionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Promotions'),
+      appBar: AppBarWidget(
+        title: Text(
+          "Promotions",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: false,
+        actions: [],
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),

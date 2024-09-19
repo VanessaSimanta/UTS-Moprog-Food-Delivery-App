@@ -7,10 +7,10 @@ import 'package:uts_mobile_programming/widget/nav_bar.dart';
 import 'package:uts_mobile_programming/widget/popular_item_widget.dart';
 import 'package:uts_mobile_programming/widget/newest_item.dart';
 import 'package:uts_mobile_programming/pages/popular_item.dart';
-import 'package:uts_mobile_programming/pages/newest_item.dart';
 import 'package:uts_mobile_programming/pages/search.dart';
 import 'package:uts_mobile_programming/pages/account.dart';
 import 'package:uts_mobile_programming/pages/help_Center.dart';
+import 'package:uts_mobile_programming/pages/item_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -46,6 +46,53 @@ class _HomeState extends State<Home> {
 }
 
 class HomePageContent extends StatelessWidget {
+ //Function untuk sort item popular based on ratings
+  List<Map<String, dynamic>> getPopularItems() {
+    List<Map<String, dynamic>> allItems = [
+      ...ayamItems,
+      ...seafoodItems,
+      ...healthItems,
+      ...minumanItems,
+    ];
+
+    //rating diatas 4.5
+    allItems.sort((a, b) => b['rating'].compareTo(a['rating']));
+    return allItems.where((item) => item['rating'] >= 4.5).toList();
+  }
+
+  //function untuk sort item based on ratings but only 5
+  List<Map<String, dynamic>> get5PopularItems() {
+    List<Map<String, dynamic>> allItems = [
+      ...ayamItems,
+      ...seafoodItems,
+      ...healthItems,
+      ...minumanItems,
+    ];
+
+    //rating diatas 4.5
+    allItems.sort((a, b) => b['rating'].compareTo(a['rating']));
+    return allItems.where((item) => item['rating'] >= 4.5).take(5).toList();
+  }
+
+  //function untuk mendapatkan newest item
+  List<Map<String, dynamic>> getNewestItems() {
+  List<Map<String, dynamic>> allItems = [
+    ...ayamItems,
+    ...seafoodItems,
+    ...healthItems,
+    ...minumanItems,
+  ];
+
+  allItems.sort((a, b) {
+    DateTime dateA = DateTime.parse(a['date']);
+    DateTime dateB = DateTime.parse(b['date']);
+    return dateB.compareTo(dateA); 
+  });
+
+  return allItems.take(5).toList();
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +123,7 @@ class HomePageContent extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+        //CAROUSEL
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -181,6 +229,7 @@ class HomePageContent extends StatelessWidget {
                 ),
               ),
             ),
+            //POPULAR MENU
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 10),
               child: Row(
@@ -199,8 +248,11 @@ class HomePageContent extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const PopularItem()),
+                           MaterialPageRoute(
+                            builder: (context) => PopularItem(
+                              popularItems: getPopularItems()
+                            ),
+                           ),
                         );
                       },
                       child: const Text(
@@ -216,44 +268,21 @@ class HomePageContent extends StatelessWidget {
                 ],
               ),
             ),
-            const PopularItemWidget(),
+            PopularItemWidget(items: get5PopularItems()),
+
+            //NEWEST ITEM
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 10),
-              child: Row(
-                children: [
-                  const Text(
-                    "Newest Item",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+              child: const Text(
+                  "Newest Item",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NewestItem()),
-                        );
-                      },
-                      child: const Text(
-                        "See All",
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            const NewestItemWidget(),
-          ],
+               NewestItemWidget(items: getNewestItems()),
+            ],
         ),
       ),
     );

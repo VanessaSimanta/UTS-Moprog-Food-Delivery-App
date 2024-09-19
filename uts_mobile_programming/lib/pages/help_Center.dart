@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
-import 'package:uts_mobile_programming/widget/nav_bar.dart';
-import 'package:uts_mobile_programming/pages/home.dart';
+
 
 class HelpCenter extends StatelessWidget {
   const HelpCenter({super.key});
@@ -13,9 +12,15 @@ class HelpCenter extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Call Us When You Need !'),
-        backgroundColor: Colors.orange,
+      appBar: const AppBarWidget(
+        title: Text(
+          "Call Us When You Need !",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
       ),
       body: Stack(
         children: [
@@ -205,42 +210,36 @@ class HelpCenter extends StatelessWidget {
     ];
 
    return faqList.map((faq) {
-  return Card(
-    margin: const EdgeInsets.symmetric(vertical: 10.0),
-    elevation: 5,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15),
-    ),
-    color: Colors.orange[100], // Mengatur warna kotak pertanyaan selain abu-abu
-    child: ExpansionTile(
-      title: Text(
-        faq['question']!,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
       ),
-      iconColor: Colors.orange, // Warna ikon
-      textColor: Colors.orange[900], // Warna teks pertanyaan
-      collapsedTextColor: Colors.black, // Warna teks saat collapsed
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            faq['answer']!,
-            style: const TextStyle(color: Colors.black), // Warna teks jawaban
+      color: Colors.orange[100], // Mengatur warna kotak pertanyaan selain abu-abu
+      child: ExpansionTile(
+        title: Text(
+          faq['question']!,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
-      ],
-    ),
-  );
-}).toList();
+        iconColor: Colors.orange, // Warna ikon
+        textColor: Colors.orange[900], // Warna teks pertanyaan
+        collapsedTextColor: Colors.black, // Warna teks saat collapsed
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              faq['answer']!,
+              style: const TextStyle(color: Colors.black), // Warna teks jawaban
+            ),
+          ),
+        ],
+      ),
+    );
+  }).toList();
 
-
-void main() {
-  runApp(const MaterialApp(
-    home: HelpCenter(),
-  ));
-}
   }
 }

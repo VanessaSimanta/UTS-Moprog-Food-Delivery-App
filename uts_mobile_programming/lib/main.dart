@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/pages/login.dart';
 import 'package:uts_mobile_programming/pages/detail_menu_screen.dart';
-import 'package:uts_mobile_programming/pages/rating.dart';
-import 'package:uts_mobile_programming/pages/review.dart';
-import 'package:uts_mobile_programming/pages/menu_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +26,7 @@ class MyApp extends StatelessWidget {
                 'reviews': 20,
               }),
         },
-        home: Login());
+        home: Login()
+    );
   }
 }
