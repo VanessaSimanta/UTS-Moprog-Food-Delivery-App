@@ -44,6 +44,7 @@ class HelpCenter extends StatelessWidget {
                     fontSize: screenWidth * 0.07,
                     color: const Color.fromARGB(224, 230, 198, 125),
                     fontWeight: FontWeight.bold,
+                    
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -193,7 +194,7 @@ class HelpCenter extends StatelessWidget {
       },
       {
         'question': 'Apakah ada batasan area pengiriman?',
-        'answer': 'Ya, layanan kami hanya mencakup area tertentu. Anda dapat memeriksa area pengiriman kami melalui aplikasi atau situs web kami.'
+        'answer': 'Ya, layanan kami hanya mencakup area Tomang, Jakarta Barat.'
       },
       {
         'question': 'Bagaimana cara menggunakan kode promo?',
