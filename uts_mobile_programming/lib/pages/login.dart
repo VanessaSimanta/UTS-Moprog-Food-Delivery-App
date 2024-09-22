@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/loginComponents/my_textfield.dart';
 import 'package:uts_mobile_programming/pages/home.dart';
+import 'package:uts_mobile_programming/pages/register.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -66,6 +67,28 @@ class Login extends StatelessWidget {
                 },
                 child: Text('Login'),
               ),
+              const SizedBox(height: 20),
+              Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                           MaterialPageRoute(
+                            builder: (context) => Register(),
+                           ),
+                        );
+                      },
+                      child: const Text(
+                        "Don't Have an Account Yet ? Create New Account !",
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 19, 19, 19),
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ),
               // forgot pass
               // sign in
               // continue with
