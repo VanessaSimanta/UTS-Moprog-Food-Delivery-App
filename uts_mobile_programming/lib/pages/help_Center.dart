@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
-
 class HelpCenter extends StatelessWidget {
   const HelpCenter({super.key});
 
@@ -44,7 +43,6 @@ class HelpCenter extends StatelessWidget {
                     fontSize: screenWidth * 0.07,
                     color: const Color.fromARGB(224, 230, 198, 125),
                     fontWeight: FontWeight.bold,
-                    
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -152,15 +150,17 @@ class HelpCenter extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.02),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Implement feedback submission functionality
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange, // Background color
-                        foregroundColor: Colors.white,  // Text color
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Implement feedback submission functionality
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange, // Background color
+                          foregroundColor: Colors.white,  // Text color
+                        ),
+                        child: const Text('Submit Feedback'),
                       ),
-                      child: const Text('Submit Feedback'),
                     ),
                     SizedBox(height: screenHeight * 0.04),
 
@@ -241,6 +241,5 @@ class HelpCenter extends StatelessWidget {
       ),
     );
   }).toList();
-
   }
 }
