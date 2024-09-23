@@ -23,10 +23,10 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    HomePageContent(),
+    const HomePageContent(),
     MenuScreen(),
-    PromotionPage(),
-    Account(),
+    const PromotionPage(),
+    const Account(),
   ];
 
   @override
@@ -46,6 +46,8 @@ class _HomeState extends State<Home> {
 }
 
 class HomePageContent extends StatelessWidget {
+  const HomePageContent({super.key});
+
  //Function untuk sort item popular based on ratings
   List<Map<String, dynamic>> getPopularItems() {
     List<Map<String, dynamic>> allItems = [
@@ -174,7 +176,7 @@ class HomePageContent extends StatelessWidget {
                     height: 8.0,
                     margin: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 4.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
@@ -271,9 +273,9 @@ class HomePageContent extends StatelessWidget {
             PopularItemWidget(items: get5PopularItems()),
 
             //NEWEST ITEM
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.only(top: 30, left: 10),
+              child: Text(
                   "Newest Item",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,

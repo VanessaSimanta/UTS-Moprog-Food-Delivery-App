@@ -30,7 +30,7 @@ class HelpCenter extends StatelessWidget {
             right: 0,
             height: screenHeight * 0.25,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/header_image.jpg'), // Ganti dengan path gambar Anda
                   fit: BoxFit.cover,
@@ -79,7 +79,7 @@ class HelpCenter extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Divider(color: Colors.orange, thickness: 2), // Pembatas setelah "Contact Us"
+                    const Divider(color: Colors.orange, thickness: 2), // Pembatas setelah "Contact Us"
                     SizedBox(height: screenHeight * 0.02), // Jarak vertikal disesuaikan
                     Container(
                       decoration: BoxDecoration(
@@ -96,7 +96,7 @@ class HelpCenter extends StatelessWidget {
                               // Implement phone call functionality
                             },
                           ),
-                          Divider(),
+                          const Divider(),
                           ListTile(
                             leading: const Icon(Icons.email, color: Colors.orange),
                             title: const Text('Email'),
@@ -120,7 +120,7 @@ class HelpCenter extends StatelessWidget {
                           ),
                            ),
                             ),
-                    Divider(color: Colors.orange, thickness: 2), // Divider after Feedback Form title
+                    const Divider(color: Colors.orange, thickness: 2), // Divider after Feedback Form title
                     SizedBox(height: screenHeight * 0.02),
                     Text(
                       'Untuk kritik dan saran serta pertanyaan lebih lanjut bisa mengisi data di bawah ini. Feedback kalian sangat membantu kami untuk terus berkembang!.',
@@ -128,23 +128,23 @@ class HelpCenter extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                     SizedBox(height: screenHeight * 0.02),
-                    TextField(
-                      decoration: const InputDecoration(
+                    const TextField(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Your Name',
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.02),
-                    TextField(
-                      decoration: const InputDecoration(
+                    const TextField(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Your Email',
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.02),
-                    TextField(
+                    const TextField(
                       maxLines: 4,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Your Feedback',
                       ),
@@ -172,7 +172,7 @@ class HelpCenter extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Divider(color: Colors.orange, thickness: 2), // Divider after FAQ title
+                    const Divider(color: Colors.orange, thickness: 2), // Divider after FAQ title
                     SizedBox(height: screenHeight * 0.02),
                     ..._buildFAQ(),
                   ],

@@ -5,7 +5,7 @@ import 'package:uts_mobile_programming/pages/review.dart';
 class DetailMenuScreen extends StatelessWidget {
   final Map<String, dynamic> menuItem;
 
-  DetailMenuScreen({required this.menuItem});
+  const DetailMenuScreen({super.key, required this.menuItem});
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +24,24 @@ class DetailMenuScreen extends StatelessWidget {
               height: 200,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               menuItem['name'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text('Rp ${menuItem['price']}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
             Rating(
                 rating: menuItem['rating'], reviewCount: menuItem['reviews']),
-            SizedBox(height: 16),
-            Divider(),
-            Text(
+            const SizedBox(height: 16),
+            const Divider(),
+            const Text(
               'User Reviews:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Expanded(
               child: ReviewList(
                 reviews: [

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PaymentPage extends StatefulWidget {
   final List<Map<String, dynamic>> cartItems;
 
-  PaymentPage({required this.cartItems});
+  const PaymentPage({super.key, required this.cartItems});
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -19,39 +19,39 @@ class _PaymentPageState extends State<PaymentPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Page'),
+        title: const Text('Payment Page'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Order Summary',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ...widget.cartItems.map((item) => ListTile(
                   title: Text(item['name']),
                   trailing: Text('Rp ${item['price']}'),
                 )),
-            Divider(),
+            const Divider(),
             ListTile(
-              title: Text(
+              title: const Text(
                 'Total',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               trailing: Text(
                 'Rp ${totalPrice.toString()}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Choose payment method',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             PaymentMethodTile(
               icon: Icons.credit_card,
               title: 'Credit Card',
@@ -85,7 +85,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 });
               },
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: selectedPaymentMethod.isEmpty
                   ? null
@@ -96,11 +96,11 @@ class _PaymentPageState extends State<PaymentPage> {
                                 'Processing payment via $selectedPaymentMethod...')),
                       );
                     },
-              child: Text('Pay now'),
+              child: const Text('Pay now'),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                textStyle: TextStyle(fontSize: 18),
-                minimumSize: Size(double.infinity, 50), // Full width button
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                textStyle: const TextStyle(fontSize: 18),
+                minimumSize: const Size(double.infinity, 50), // Full width button
               ),
             ),
           ],
@@ -117,7 +117,7 @@ class PaymentMethodTile extends StatelessWidget {
   final String currentMethod;
   final VoidCallback onTap;
 
-  PaymentMethodTile({
+  const PaymentMethodTile({super.key, 
     required this.icon,
     required this.title,
     required this.selectedMethod,
@@ -131,8 +131,8 @@ class PaymentMethodTile extends StatelessWidget {
       leading: Icon(icon),
       title: Text(title),
       trailing: selectedMethod == currentMethod
-          ? Icon(Icons.check, color: Colors.green)
-          : Icon(Icons.arrow_forward_ios),
+          ? const Icon(Icons.check, color: Colors.green)
+          : const Icon(Icons.arrow_forward_ios),
       onTap: onTap,
     );
   }

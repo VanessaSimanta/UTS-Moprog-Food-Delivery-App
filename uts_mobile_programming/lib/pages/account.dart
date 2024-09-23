@@ -103,7 +103,7 @@ class _AccountState extends State<Account> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 231, 197),
+                    backgroundColor: const Color.fromARGB(255, 255, 231, 197),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -124,7 +124,7 @@ class _AccountState extends State<Account> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 231, 197),
+                    backgroundColor: const Color.fromARGB(255, 255, 231, 197),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

@@ -10,7 +10,7 @@ class Review {
 class ReviewList extends StatelessWidget {
   final List<Review> reviews;
 
-  ReviewList({required this.reviews});
+  const ReviewList({super.key, required this.reviews});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ReviewList extends StatelessWidget {
       itemBuilder: (context, index) {
         final review = reviews[index];
         return ListTile(
-          leading: Icon(Icons.person),
+          leading: const Icon(Icons.person),
           title: Text(review.reviewerName),
           subtitle: Text(review.reviewText),
         );

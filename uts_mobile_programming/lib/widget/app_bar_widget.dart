@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: showBackArrow
         ? IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.keyboard_arrow_left, size: 30),
+            icon: const Icon(Icons.keyboard_arrow_left, size: 30),
           )
         : leadingIcon != null
           ? IconButton(

@@ -4,19 +4,19 @@ class Rating extends StatelessWidget {
   final double rating;
   final int reviewCount;
 
-  Rating({required this.rating, required this.reviewCount});
+  const Rating({super.key, required this.rating, required this.reviewCount});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.star, color: Colors.orange, size: 20),
-        SizedBox(width: 4),
+        const Icon(Icons.star, color: Colors.orange, size: 20),
+        const SizedBox(width: 4),
         Text(
           '$rating',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Text('($reviewCount reviews)'),
       ],
     );

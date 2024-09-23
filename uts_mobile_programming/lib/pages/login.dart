@@ -21,7 +21,7 @@ class Login extends StatelessWidget {
               const SizedBox(height: 50),
 
               //logo
-              Icon(
+              const Icon(
                 Icons.lock,
                 size: 100,
               ),
@@ -65,7 +65,7 @@ class Login extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Home()),
                   );
                 },
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
               const SizedBox(height: 20),
               Padding(
@@ -75,7 +75,7 @@ class Login extends StatelessWidget {
                         Navigator.push(
                           context,
                            MaterialPageRoute(
-                            builder: (context) => Register(),
+                            builder: (context) => const Register(),
                            ),
                         );
                       },

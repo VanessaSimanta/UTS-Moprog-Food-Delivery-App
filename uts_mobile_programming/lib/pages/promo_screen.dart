@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class PromotionPage extends StatelessWidget {
+  const PromotionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         title: Text(
           "Promotions",
           style: TextStyle(
@@ -16,7 +18,7 @@ class PromotionPage extends StatelessWidget {
         actions: [],
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           PromotionCard(
             imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
@@ -26,7 +28,7 @@ class PromotionPage extends StatelessWidget {
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Promo 1 claimed!')),
+                const SnackBar(content: Text('Promo 1 claimed!')),
               );
             },
           ),
@@ -38,7 +40,7 @@ class PromotionPage extends StatelessWidget {
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Promo 2 claimed!')),
+                const SnackBar(content: Text('Promo 2 claimed!')),
               );
             },
           ),
@@ -50,7 +52,7 @@ class PromotionPage extends StatelessWidget {
             onClaim: () {
               // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Promo 3 claimed!')),
+                const SnackBar(content: Text('Promo 3 claimed!')),
               );
             },
           ),
@@ -66,7 +68,7 @@ class PromotionCard extends StatelessWidget {
   final String description;
   final VoidCallback onClaim;
 
-  const PromotionCard({
+  const PromotionCard({super.key, 
     required this.imageUrl,
     required this.title,
     required this.description,
@@ -76,7 +78,7 @@ class PromotionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -89,19 +91,19 @@ class PromotionCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   description,
                   style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(
                     onPressed: onClaim,
-                    child: Text('Claim Now'),
+                    child: const Text('Claim Now'),
                   ),
                 ),
               ],

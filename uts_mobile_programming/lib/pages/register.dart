@@ -88,12 +88,13 @@ class _RegisterState extends State<Register> {
                         suffixIcon: Icon(CupertinoIcons.eye_slash),
                       ),
                     ),
+                     const SizedBox(height: 16),
                     Row(
                       children: [
                         SizedBox(
                           width: 24,
                           height: 24,
-                          child: Checkbox(value: true, onChanged: (value) {}),
+                          child: Checkbox(value: false, onChanged: (value) {}),
                         ),
                         const SizedBox(width: 16),
                         Text.rich(
@@ -103,7 +104,7 @@ class _RegisterState extends State<Register> {
                                 text: 'I agree to the ',
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
-                              TextSpan(
+                              const TextSpan(
                                 text: 'terms',
                                 style: TextStyle(
                                   color: Colors.blue,
@@ -114,7 +115,7 @@ class _RegisterState extends State<Register> {
                                 text: ' and ',
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
-                              TextSpan(
+                              const TextSpan(
                                 text: 'conditions',
                                 style: TextStyle(
                                   color: Colors.blue,
@@ -136,12 +137,12 @@ class _RegisterState extends State<Register> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => Home(),
+                              builder: (context) => const Home(),
                             ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFFF8811),
+                          backgroundColor: const Color(0xFFFF8811),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -173,7 +174,7 @@ class _RegisterState extends State<Register> {
                           icon: const Icon(Icons.g_mobiledata),
                           label: const Text("Google"),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF9DD9D2), // Customize color
+                            backgroundColor: const Color(0xFF9DD9D2), // Customize color
                           ),
                         ),
                         const SizedBox(width: 20),
@@ -184,7 +185,7 @@ class _RegisterState extends State<Register> {
                           icon: const Icon(Icons.facebook),
                           label: const Text("Facebook"),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF9DD9D2), // Customize color
+                            backgroundColor: const Color(0xFF9DD9D2), // Customize color
                           ),
                         ),
                       ],

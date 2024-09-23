@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class PopularItem extends StatelessWidget {
   final List<Map<String, dynamic>> popularItems;
 
-  const PopularItem({Key? key, required this.popularItems}) : super(key: key);
+  const PopularItem({super.key, required this.popularItems});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class PopularItem extends StatelessWidget {
     final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
 
     return Scaffold(
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         title: Text(
           "Popular Menu",
           style: TextStyle(
@@ -76,14 +76,14 @@ class PopularItem extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                SizedBox(height: 8.0), 
+                                const SizedBox(height: 8.0), 
                                 Text(
                                   'Rp. ${currencyFormat.format(item['price'])}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                   ),
                                 ),
-                                SizedBox(height: 8.0), 
+                                const SizedBox(height: 8.0), 
                                 Row(
                                   children: [// Space between icon and text
                                     Text(
@@ -92,8 +92,8 @@ class PopularItem extends StatelessWidget {
                                         fontSize: 18,
                                       ),
                                     ),
-                                    SizedBox(width: 4.0),
-                                    Icon(
+                                    const SizedBox(width: 4.0),
+                                    const Icon(
                                       Icons.star,
                                       color: Colors.amber, // Change color if needed
                                       size: 20, // Adjust size if needed

@@ -123,7 +123,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search, color: Colors.orange),
+                      prefixIcon: const Icon(Icons.search, color: Colors.orange),
                       hintText: 'Find Your Favorite Here!',
                       hintStyle: const TextStyle(
                         color: Colors.grey,
@@ -212,7 +212,7 @@ class SearchScreen extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
-    home: const SearchScreen(),
+  runApp(const MaterialApp(
+    home: SearchScreen(),
   ));
 }

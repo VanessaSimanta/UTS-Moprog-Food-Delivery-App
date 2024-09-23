@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFFFFF8F0),
         ),
         routes: {
-          '/detailMenu': (context) => DetailMenuScreen(menuItem: {
+          '/detailMenu': (context) => const DetailMenuScreen(menuItem: {
                 'name': 'Example Menu',
                 'price': '10000',
                 'imageURL': 'https://via.placeholder.com/150',

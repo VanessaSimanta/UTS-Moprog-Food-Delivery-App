@@ -79,8 +79,8 @@ class NewestItemWidget extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          SizedBox(width: 4.0),
-                          Icon(
+                          const SizedBox(width: 4.0),
+                          const Icon(
                             Icons.star,
                             color: Colors.amber,
                             size: 18,

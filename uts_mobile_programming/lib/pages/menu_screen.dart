@@ -20,7 +20,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        title: Text(
+        title: const Text(
           "Profile",
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class _MenuScreenState extends State<MenuScreen> {
         showBackArrow: false,
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               _showCart(context); // Tampilkan keranjang jika icon cart di tap
             },
@@ -57,7 +57,7 @@ class _MenuScreenState extends State<MenuScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.bold,
             ),
@@ -67,12 +67,12 @@ class _MenuScreenState extends State<MenuScreen> {
           shrinkWrap:
               true, // Menggunakan shrinkWrap untuk membatasi ukuran ListView
           physics:
-              NeverScrollableScrollPhysics(), // Memastikan ListView tidak bisa di-scroll
+              const NeverScrollableScrollPhysics(), // Memastikan ListView tidak bisa di-scroll
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
             return Card(
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: ListTile(
                 leading: item.containsKey('imageURL')
                     ? Image.network(
@@ -81,7 +81,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         height: 50,
                         fit: BoxFit.cover,
                       )
-                    : Icon(Icons.image, size: 50, color: Colors.grey),
+                    : const Icon(Icons.image, size: 50, color: Colors.grey),
                 title: Text(item['name']),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,15 +89,15 @@ class _MenuScreenState extends State<MenuScreen> {
                     if (item.containsKey('rating'))
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.orange, size: 16),
-                          SizedBox(width: 4),
+                          const Icon(Icons.star, color: Colors.orange, size: 16),
+                          const SizedBox(width: 4),
                           Text('${item['rating']} (${item['reviews']}+)',
-                              style: TextStyle(fontSize: 12)),
+                              style: const TextStyle(fontSize: 12)),
                         ],
                       ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text('Rp. ${currencyFormat.format(item['price'])}',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
                 trailing: ElevatedButton(
@@ -109,7 +109,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     // Tampilkan modal Cart
                     _showCart(context);
                   },
-                  child: Text('Tambah'),
+                  child: const Text('Tambah'),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -151,20 +151,20 @@ class _MenuScreenState extends State<MenuScreen> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Keranjang Belanja',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              Divider(),
+              const Divider(),
               if (cartItems.isEmpty)
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Keranjang Anda kosong',
                       style: TextStyle(fontSize: 16),
@@ -177,7 +177,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     title: Text(item['name']),
                     subtitle: Text('Rp ${item['price']}'),
                     trailing: IconButton(
-                      icon: Icon(Icons.remove_circle_outline),
+                      icon: const Icon(Icons.remove_circle_outline),
                       onPressed: () {
                         setState(() {
                           cartItems.remove(item); // Hapus item dari keranjang
@@ -204,10 +204,10 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                       );
                     },
-                    child: Text('Lanjutkan ke Pembayaran'),
+                    child: const Text('Lanjutkan ke Pembayaran'),
                     style: ElevatedButton.styleFrom(
                       minimumSize:
-                          Size(double.infinity, 40), // Full width button
+                          const Size(double.infinity, 40), // Full width button
                     ),
                   ),
                 ),
