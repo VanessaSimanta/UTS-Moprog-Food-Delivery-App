@@ -173,7 +173,7 @@ final List<Map<String, dynamic>> minumanItems = [
     'price': 12000,
     'rating': 4.8,
     'reviews': 18,
-    'imageURL': 'https://i.pinimg.com/564x/f6/52/c6/f652c6459b934d0dc800d97cdd573fc3.jpg',
+    'imageURL': 'https://i.pinimg.com/564x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg',
     'date': '2024-08-05',
   },
   {
@@ -214,5 +214,77 @@ final List<Map<String, dynamic>> minumanItems = [
     },
 ];
 
-
-  
+final List<Map<String, dynamic>> ayamAlacarteItems = [
+  {
+    'name': 'Ayam Telor Asin',
+    'price': 30000,
+    'rating': 4.0,
+    'reviews': 15,
+    'imageURL': 'https://i.pinimg.com/564x/a3/6b/86/a36b86e08edaf2fe34bcbe65b722e9f8.jpg',
+    'date': '2024-09-18',
+  },
+  {
+    'name': 'Ayam Cabai Garam',
+    'price': 28000,
+    'rating': 4.3,
+    'reviews': 25,
+    'imageURL': 'https://i.pinimg.com/564x/f9/02/2a/f9022ada4a6b63c60a09a912da20a4a0.jpg',
+    'date': '2024-02-05',
+  },
+  {
+    'name': 'Ayam Kremes',
+    'price': 27000,
+    'rating': 4.6,
+    'reviews': 10,
+    'imageURL': 'https://i.pinimg.com/564x/ec/7a/74/ec7a74bbca9214f8b3022ab90006d411.jpg',
+    'date': '2024-02-05',
+  },
+  {
+    'name': 'Ayam Bakar',
+    'price': 25000,
+    'rating': 4.0,
+    'reviews': 14,
+    'imageURL': 'https://i.pinimg.com/736x/80/3c/bc/803cbcabba9e4f43b52ea660ac726b90.jpg',
+    'date': '2023-09-28',
+  },
+  {
+    'name': 'Ayam Hainan',
+    'price': 23000,
+    'rating': 4.3,
+    'reviews': 8,
+    'imageURL': 'https://i.pinimg.com/564x/06/91/f8/0691f86ab4725c59b33914b95599a399.jpg',
+    'date': '2024-10-18',
+  },
+  {
+    'name': 'Ayam Lada Hitam',
+    'price': 27000,
+    'rating': 4.5,
+    'reviews': 13,
+    'imageURL': 'https://i.pinimg.com/564x/2c/44/98/2c44980f64dabb6651ea96c0fd3e1754.jpg',
+    'date': '2024-02-05',
+  },
+  {
+    'name': 'Ayam Kungpau',
+    'price': 21000,
+    'rating': 4.1,
+    'reviews': 6,
+    'imageURL': 'https://i.pinimg.com/564x/d7/cd/e2/d7cde2835fc673e4d6b7f823b7314098.jpg',
+    'date': '2024-11-07',
+  },
+  {
+    'name': 'Ayam Sambal Matah',
+    'price': 24000,
+    'rating': 4.2,
+    'reviews': 4,
+    'imageURL': 'https://i.pinimg.com/564x/c9/01/a0/c901a002f37b719a6b1b1ed6ecf1451a.jpg',
+    'date': '2024-02-05',
+  },
+  {
+    'name': 'Ayam Teriyaki',
+    'price': 24000,
+    'rating': 4.8,
+    'reviews': 18,
+    'imageURL': 'https://i.pinimg.com/564x/ef/27/10/ef27109b494c335f4a1b4aa6af286dc8.jpg',
+    'date': '2024-06-08',
+  },
+];

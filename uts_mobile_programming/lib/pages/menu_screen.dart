@@ -41,7 +41,7 @@ class _MenuScreenState extends State<MenuScreen> {
           _buildCategorySection('Paket Nasi Ayam + Nasi', ayamItems),
           _buildCategorySection('Paket Nasi + Seafood', seafoodItems),
           _buildCategorySection('Paket Nasi Sehat', healthItems),
-          // _buildCategorySection('Menu Ayam Alacarte', ayamAlacarteItems),
+          _buildCategorySection('Menu Ayam Alacarte', ayamAlacarteItems),
           _buildCategorySection('Minuman', minumanItems),
         ],
       ),
@@ -72,7 +72,7 @@ class _MenuScreenState extends State<MenuScreen> {
           itemBuilder: (context, index) {
             final item = items[index];
             return Card(
-              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ListTile(
                 leading: item.containsKey('imageURL')
                     ? Image.network(
@@ -81,7 +81,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         height: 50,
                         fit: BoxFit.cover,
                       )
-                    : const Icon(Icons.image, size: 50, color: Colors.grey),
+                    : const Icon(Icons.image, size: 80, color: Colors.grey),
                 title: Text(item['name']),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
