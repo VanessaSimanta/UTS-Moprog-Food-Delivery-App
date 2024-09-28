@@ -9,7 +9,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     //Register
-    public function register(Request $request) {
+   public function register(Request $request) {
         //validate
         $attrs = $request -> validate([
             'fname' => 'required|string',
@@ -36,11 +36,43 @@ class AuthController extends Controller
         ]);
     }
 
-    //logout
-    // public function logout() {
-    //     auth() -> user() -> tokens() -> delete();
-    //     return response([
-    //         'message' => 'logout success'
-    //     ], 200);
-    // }
+    // Login User
+
+    public function login(Request $request) {
+
+        // Validate
+        $attrs = $request -> validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        // Attempt Login
+        if (!Auth::attempt($attrs)){
+            return respons([
+                'message' => 'Invalid Credentials.'
+            ], 403);
+        }
+
+
+        return response([
+            'user' => $user,
+            'token' => $user -> createToken('secret') -> plainTextToken,
+        ],200);
+
+    }
+    
+    // Logout
+    public function logout() {
+        auth() -> user() -> tokens() -> delete();
+        return response([
+            'message' => 'Logout success'
+        ], 200); 
+    }
+
+    // Get Users Detail
+    public function user(){
+        return response([
+            'user' => auth()->user()
+        ], 200);
+    }
 }
