@@ -1,3 +1,4 @@
+//link url untuk connect ke back end 
 const baseURL = 'http://192.168.0.141:8000/api';
 const loginURL = baseURL + '/login';
 const registerURL = baseURL + '/register';

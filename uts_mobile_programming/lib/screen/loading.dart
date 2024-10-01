@@ -5,6 +5,7 @@ import 'package:uts_mobile_programming/services/constant.dart';
 import 'package:uts_mobile_programming/services/user_services.dart';
 import 'package:uts_mobile_programming/screen/login.dart';
 
+//LOADING SCREEN 
 class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();
@@ -13,15 +14,16 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
   void _loadUserInfo() async {
-  print('Loading user info...');
   await Future.delayed(const Duration(seconds: 2)); 
   String token = await getToken();
   
+  //token kosong masuk ke login
   if (token == '') {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => Login()), 
       (route) => false
     );
+    //udah ada token langsung ke home
   } else {
     ApiResponse response = await getUserDetail();
     if (response.error == null) {
@@ -29,6 +31,7 @@ class _LoadingState extends State<Loading> {
         MaterialPageRoute(builder: (context) => Home()), 
         (route) => false
       );
+      //error masuk ke login
     } else if (response.error == unathorized) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => Login()), 

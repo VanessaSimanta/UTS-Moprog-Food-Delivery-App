@@ -5,6 +5,7 @@ import 'package:uts_mobile_programming/services/user_services.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:uts_mobile_programming/screen/login.dart';
 
+//SCREEN UNTUK ACCOUNT USER
 class Account extends StatefulWidget {
   const Account({super.key});
 
@@ -22,6 +23,7 @@ class _AccountState extends State<Account> {
     _loadUserDetails();
   }
 
+//ambil data dari database
   Future<void> _loadUserDetails() async {
     ApiResponse apiResponse = await getUserDetail();
     if (apiResponse.data != null) {
@@ -36,6 +38,7 @@ class _AccountState extends State<Account> {
     }
   }
 
+//function utnuk logout
   Future<void> _logout() async {
     bool success = await logout();
     if (success) {
@@ -50,56 +53,58 @@ class _AccountState extends State<Account> {
     }
   }
 
-//   Future<void> _deleteAccount() async {
-//   bool confirm = await _showDeleteConfirmationDialog();
-//   if (confirm) {
-//     ApiResponse apiResponse = await deleteAccount(); 
-//     if (apiResponse.success) {
-//       String message = apiResponse.data is String 
-//           ? apiResponse.data as String 
-//           : 'Account deleted successfully.'; // Default message if not a String
+//function untuk delete account
+  Future<void> _deleteAccount() async {
+  bool confirm = await _showDeleteConfirmationDialog();
+  if (confirm) {
+    ApiResponse apiResponse = await deleteAccount(); 
+    if (apiResponse.success) {
+      String message = apiResponse.data is String 
+          ? apiResponse.data as String 
+          : 'Account deleted successfully.'; 
 
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text(message)),
-//       );
-//       _logout(); // Logout after deleting account
-//     } else {
-//       String errorMessage = apiResponse.error ?? 'Failed to delete account.';
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text(errorMessage)),
-//       );
-//     }
-//   }
-// }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+      _logout(); // Logout after deleting account
+    } else {
+      String errorMessage = apiResponse.error ?? 'Failed to delete account.';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    }
+  }
+}
 
 
-//   Future<bool> _showDeleteConfirmationDialog() async {
-//     return await showDialog<bool>(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           title: const Text('Delete Account'),
-//           content: const Text('Are you sure you want to delete your account? This action cannot be undone.'),
-//           actions: <Widget>[
-//             TextButton(
-//               onPressed: () => Navigator.of(context).pop(false), 
-//               child: const Text('Cancel', style: TextStyle(fontWeight: FontWeight.w700),),
-//             ),
-//             TextButton(
-//               onPressed: () => Navigator.of(context).pop(true), 
-//               child: const Text(
-//                 'Delete',
-//                 style: TextStyle(
-//                   fontWeight: FontWeight.bold,
-//                   color: Colors.red, 
-//                 ),
-//               ),
-//             ),
-//           ],
-//         );
-//       },
-//     ) ?? false; 
-//   }
+//pop up delete confirmation
+  Future<bool> _showDeleteConfirmationDialog() async {
+    return await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Account'),
+          content: const Text('Are you sure you want to delete your account? This action cannot be undone.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false), 
+              child: const Text('Cancel', style: TextStyle(fontWeight: FontWeight.w700),),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true), 
+              child: const Text(
+                'Delete',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red, 
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    ) ?? false; 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -203,9 +208,7 @@ class _AccountState extends State<Account> {
                     const SizedBox(height: 20),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Define your action here
-                        },
+                        onPressed: _deleteAccount,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 255, 231, 197),
                           shape: RoundedRectangleBorder(
@@ -229,6 +232,7 @@ class _AccountState extends State<Account> {
     );
   }
 
+//widget untuk bikin profile 
   Widget buildProfileRow(String label, String value, BuildContext context, {VoidCallback? onTap}) {
     return Row(
       children: [

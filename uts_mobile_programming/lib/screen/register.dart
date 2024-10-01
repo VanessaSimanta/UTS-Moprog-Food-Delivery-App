@@ -6,6 +6,7 @@ import 'package:uts_mobile_programming/screen/home.dart';
 import 'package:uts_mobile_programming/services/user_services.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
+//REGISTER SCREEN
 class Register extends StatefulWidget {
   const Register({super.key});
 

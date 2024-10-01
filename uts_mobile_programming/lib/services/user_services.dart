@@ -92,93 +92,91 @@ Future<ApiResponse> register(
 }
 
 //update user detail (address & DOB)
-// Future<ApiResponse> updateUserDetails(String address, String dob) async {
-//   ApiResponse apiResponse = ApiResponse();
-//   try {
-//     print('Updating user details: Address: $address, DOB: $dob');
+Future<ApiResponse> updateUserDetails(String address, String dob) async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    print('Updating user details: Address: $address, DOB: $dob');
 
-//     String token = await getToken();
+    String token = await getToken();
 
-//     final response = await http.put(
-//       Uri.parse(updateUserDetailsURL),
-//       headers: {
-//         'Accept': 'application/json',
-//         'Authorization': 'Bearer $token',
-//         'Content-Type': 'application/json',
-//       },
-//       body: jsonEncode({
-//         'address': address,
-//         'dob': dob,
-//       })
-//     );
+    final response = await http.put(
+      Uri.parse(updateUserDetailsURL),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'address': address,
+        'dob': dob,
+      })
+    );
 
-//     print('Response status code: ${response.statusCode}');
-//     print('Response body: ${response.body}');
+    print('Response status code: ${response.statusCode}');
+    print('Response body: ${response.body}');
 
-//     switch (response.statusCode) {
-//       case 200:
-//       case 201:
-//         apiResponse.data = User.fromJson(jsonDecode(response.body));
-//         break;
-//       case 422:
-//         final errors = jsonDecode(response.body)['errors'];
-//         apiResponse.error = errors[errors.keys.elementAt(0)][0];
-//         print('Validation error: ${apiResponse.error}');
-//         break;
-//       case 403:
-//         apiResponse.error = jsonDecode(response.body)['message'];
-//         print('Authorization error: ${apiResponse.error}');
-//         break;
-//       default:
-//         apiResponse.error = somethingWentWrong;
-//         print('Unknown error: ${apiResponse.error}');
-//         break;
-//     }
-//   } catch (e) {
-//     apiResponse.error = serverError;
-//     print('Error occurred: $e');
-//   }
+    switch (response.statusCode) {
+      case 200:
+      case 201:
+        apiResponse.data = User.fromJson(jsonDecode(response.body));
+        break;
+      case 422:
+        final errors = jsonDecode(response.body)['errors'];
+        apiResponse.error = errors[errors.keys.elementAt(0)][0];
+        print('Validation error: ${apiResponse.error}');
+        break;
+      case 403:
+        apiResponse.error = jsonDecode(response.body)['message'];
+        print('Authorization error: ${apiResponse.error}');
+        break;
+      default:
+        apiResponse.error = somethingWentWrong;
+        print('Unknown error: ${apiResponse.error}');
+        break;
+    }
+  } catch (e) {
+    apiResponse.error = serverError;
+    print('Error occurred: $e');
+  }
 
-//   return apiResponse;
-// }
+  return apiResponse;
+}
 
 //delete account
-// Future<ApiResponse> deleteAccount() async {
-//   ApiResponse apiResponse = ApiResponse();
-//   try {
-//     String token = await getToken(); 
-//     if (token.isEmpty) {
-//       apiResponse.error = 'No valid token found. Please log in again.';
-//       return apiResponse;
-//     }
+Future<ApiResponse> deleteAccount() async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    String token = await getToken(); 
+    if (token.isEmpty) {
+      apiResponse.error = 'No valid token found. Please log in again.';
+      return apiResponse;
+    }
 
-//     final response = await http.delete(
-//       Uri.parse(deleteAccountURL),
-//       headers: {
-//         'Accept': 'application/json',
-//         'Authorization': 'Bearer $token',
-//       },
-//     );
+    final response = await http.delete(
+      Uri.parse(deleteAccountURL),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
 
-//     switch (response.statusCode) {
-//       case 200:
-//         apiResponse.data = 'Account deleted successfully';
-//         apiResponse.success = true; 
-//         break;
-//       case 401:
-//         apiResponse.error = 'Unauthorized request. Please log in again.';
-//         break;
-//       default:
-//         apiResponse.error = somethingWentWrong; 
-//         break;
-//     }
-//   } catch (e) {
-//     apiResponse.error = serverError; 
-//   }
-//   return apiResponse;
-// }
-
-
+    switch (response.statusCode) {
+      case 200:
+        apiResponse.data = 'Account deleted successfully';
+        apiResponse.success = true; 
+        break;
+      case 401:
+        apiResponse.error = 'Unauthorized request. Please log in again.';
+        break;
+      default:
+        apiResponse.error = somethingWentWrong; 
+        break;
+    }
+  } catch (e) {
+    apiResponse.error = serverError; 
+  }
+  return apiResponse;
+}
 
 //user
 Future<ApiResponse> getUserDetail () async {

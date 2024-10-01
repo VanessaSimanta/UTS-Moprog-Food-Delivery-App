@@ -1,8 +1,15 @@
 class ApiResponse {
-  Object? data;
+  bool success;
   String? error;
-  //bool success; 
+  dynamic data;
 
-  ApiResponse({ this.data, this.error});
+  ApiResponse({this.success = false, this.error, this.data});
+
+  factory ApiResponse.fromJson(Map<String, dynamic> json) {
+    return ApiResponse(
+      success: json['success'] ?? false,
+      error: json['error'],
+      data: json['data'],
+    );
+  }
 }
-
