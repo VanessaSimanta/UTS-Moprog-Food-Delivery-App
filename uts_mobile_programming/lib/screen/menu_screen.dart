@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/pages/payment.dart';
-import 'package:uts_mobile_programming/pages/detail_menu_screen.dart';
-import 'package:uts_mobile_programming/pages/item_menu.dart';
+import 'package:uts_mobile_programming/screen/payment.dart';
+import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
+import 'package:uts_mobile_programming/screen/item_menu.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:intl/intl.dart'; 
 

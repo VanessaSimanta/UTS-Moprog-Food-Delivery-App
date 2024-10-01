@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/pages/rating.dart';
-import 'package:uts_mobile_programming/pages/review.dart';
+import 'package:uts_mobile_programming/screen/rating.dart';
+import 'package:uts_mobile_programming/screen/review.dart';
 
 class DetailMenuScreen extends StatelessWidget {
   final Map<String, dynamic> menuItem;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
-import 'package:uts_mobile_programming/pages/menu_screen.dart';
-import 'package:uts_mobile_programming/pages/promo_screen.dart';
+import 'package:uts_mobile_programming/screen/menu_screen.dart';
+import 'package:uts_mobile_programming/screen/promo_screen.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:uts_mobile_programming/widget/nav_bar.dart';
 import 'package:uts_mobile_programming/widget/popular_item_widget.dart';
 import 'package:uts_mobile_programming/widget/newest_item.dart';
-import 'package:uts_mobile_programming/pages/popular_item.dart';
-import 'package:uts_mobile_programming/pages/search.dart';
-import 'package:uts_mobile_programming/pages/account.dart';
-import 'package:uts_mobile_programming/pages/help_Center.dart';
-import 'package:uts_mobile_programming/pages/item_menu.dart';
+import 'package:uts_mobile_programming/screen/popular_item.dart';
+import 'package:uts_mobile_programming/screen/search.dart';
+import 'package:uts_mobile_programming/screen/account.dart';
+import 'package:uts_mobile_programming/screen/help_Center.dart';
+import 'package:uts_mobile_programming/screen/item_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
