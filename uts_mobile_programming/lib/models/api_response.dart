@@ -1,8 +1,8 @@
 class ApiResponse {
   Object? data;
   String? error;
-  bool success; 
+  //bool success; 
 
-  ApiResponse({this.success = false, this.data, this.error});
+  ApiResponse({ this.data, this.error});
 }
 

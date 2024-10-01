@@ -75,22 +75,22 @@ class AuthController extends Controller
     }
 
     //update user details
-    public function updateUserDetails(Request $request){
-        $request->validate([
-            'address' => 'string|max:255',
-            'dob' => 'date',
-        ]);
+//     public function updateUserDetails(Request $request){
+//         $request->validate([
+//             'address' => 'string|max:255',
+//             'dob' => 'date',
+//         ]);
 
-        $user = auth()->user();
-        $user->address = $request->address;
-        $user->dob = $request->dob;
-        $user->save();
-        logger()->info('Received address: ' . $request->address);
-logger()->info('Received dob: ' . $request->dob);
+//         $user = auth()->user();
+//         $user->address = $request->address;
+//         $user->dob = $request->dob;
+//         $user->save();
+//         logger()->info('Received address: ' . $request->address);
+// logger()->info('Received dob: ' . $request->dob);
 
 
-        return response()->json(['message' => 'User details updated successfully'], 200);
-    }
+//         return response()->json(['message' => 'User details updated successfully'], 200);
+//     }
 
     //delete account
     public function destroy(Request $request){

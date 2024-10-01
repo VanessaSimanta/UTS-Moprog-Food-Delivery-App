@@ -143,40 +143,40 @@ Future<ApiResponse> register(
 // }
 
 //delete account
-Future<ApiResponse> deleteAccount() async {
-  ApiResponse apiResponse = ApiResponse();
-  try {
-    String token = await getToken(); 
-    if (token.isEmpty) {
-      apiResponse.error = 'No valid token found. Please log in again.';
-      return apiResponse;
-    }
+// Future<ApiResponse> deleteAccount() async {
+//   ApiResponse apiResponse = ApiResponse();
+//   try {
+//     String token = await getToken(); 
+//     if (token.isEmpty) {
+//       apiResponse.error = 'No valid token found. Please log in again.';
+//       return apiResponse;
+//     }
 
-    final response = await http.delete(
-      Uri.parse(deleteAccountURL),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-    );
+//     final response = await http.delete(
+//       Uri.parse(deleteAccountURL),
+//       headers: {
+//         'Accept': 'application/json',
+//         'Authorization': 'Bearer $token',
+//       },
+//     );
 
-    switch (response.statusCode) {
-      case 200:
-        apiResponse.data = 'Account deleted successfully';
-        apiResponse.success = true; 
-        break;
-      case 401:
-        apiResponse.error = 'Unauthorized request. Please log in again.';
-        break;
-      default:
-        apiResponse.error = somethingWentWrong; 
-        break;
-    }
-  } catch (e) {
-    apiResponse.error = serverError; 
-  }
-  return apiResponse;
-}
+//     switch (response.statusCode) {
+//       case 200:
+//         apiResponse.data = 'Account deleted successfully';
+//         apiResponse.success = true; 
+//         break;
+//       case 401:
+//         apiResponse.error = 'Unauthorized request. Please log in again.';
+//         break;
+//       default:
+//         apiResponse.error = somethingWentWrong; 
+//         break;
+//     }
+//   } catch (e) {
+//     apiResponse.error = serverError; 
+//   }
+//   return apiResponse;
+// }
 
 
 

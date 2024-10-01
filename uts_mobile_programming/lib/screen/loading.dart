@@ -13,26 +13,35 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
   void _loadUserInfo() async {
-    String token = await getToken();
-    if (token == '') {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Login()), (route) => false);
-    }
-    else {
-      ApiResponse response = await getUserDetail();
-      if (response.error == null){
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Home()), (route) => false);
-      }
-      else if (response.error == unathorized){
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Login()), (route) => false);
-      }
-      else {
-        ScaffoldMessenger.of(context).showSnackBar((SnackBar(
-          content: Text('${response.error}'),
-        )));
-      }
+  print('Loading user info...');
+  await Future.delayed(const Duration(seconds: 2)); 
+  String token = await getToken();
+  
+  if (token == '') {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => Login()), 
+      (route) => false
+    );
+  } else {
+    ApiResponse response = await getUserDetail();
+    if (response.error == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()), 
+        (route) => false
+      );
+    } else if (response.error == unathorized) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Login()), 
+        (route) => false
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${response.error}')),
+      );
     }
   }
-  
+}
+
   @override
   void initState(){
     _loadUserInfo();
