@@ -76,12 +76,12 @@ class _MenuScreenState extends State<MenuScreen> {
                 borderRadius: BorderRadius.circular(15), 
               ),
               elevation: 8, 
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 25), 
+              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16), 
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [Colors.white, Colors.grey[200]!],)
                 ),
-                padding: const EdgeInsets.all(24.0), 
+                padding: const EdgeInsets.all(12.0), 
                 height: 150,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,13 +91,13 @@ class _MenuScreenState extends State<MenuScreen> {
                             borderRadius: BorderRadius.circular(20.0), 
                             child: Image.network(
                               item['imageURL'],
-                              width: 120, 
-                              height: 120,
+                              width: 100, 
+                              height: 100,
                               fit: BoxFit.cover,
                             ),
                           )
                         : const Icon(Icons.image, size: 110, color: Colors.grey),
-                    const SizedBox(width: 50), 
+                    const SizedBox(width: 30), 
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +105,7 @@ class _MenuScreenState extends State<MenuScreen> {
                           Text(
                             item['name'],
                             style: const TextStyle(
-                              fontSize: 22, // Increased font size
+                              fontSize: 20, // Increased font size
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
                             ),
