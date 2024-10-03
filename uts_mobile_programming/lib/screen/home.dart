@@ -308,3 +308,197 @@ class HomePageContent extends StatelessWidget {
     );
   }
 }
+
+class SettingsScreen extends StatefulWidget {
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<MenuScreen> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBarWidget(
+        title: const Text('Settings'),
+      ),
+      body: ListView(
+        children: [
+          _buildSettingTile(
+            context,
+            Icons.account_circle,
+            'Account Settings',
+            const AccountSettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.notifications,
+            'Notifications',
+            const NotificationSettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.privacy_tip,
+            'Privacy',
+            const PrivacySettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.color_lens,
+            'Theme',
+            const ThemeSettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.language,
+            'Language',
+            const LanguageSettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.storage,
+            'Storage',
+            const StorageSettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.security,
+            'Security',
+            const SecuritySettingsScreen(),
+          ),
+          _buildSettingTile(
+            context,
+            Icons.help,
+            'Help & Support',
+            const HelpSettingsScreen(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSettingTile(BuildContext context, IconData icon, String title, Widget screen) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+          },
+          child: Container(
+            height: 60, // Increased height for the button
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                Icon(icon, size: 28), // Larger icon size
+                const SizedBox(width: 16),
+                Expanded(child: Text(title, style: const TextStyle(fontSize: 18))), // Larger text size
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Placeholder screens for individual settings
+class AccountSettingsScreen extends StatelessWidget {
+  const AccountSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Account Settings')),
+      body: const Center(child: Text('Account Settings Content')),
+    );
+  }
+}
+
+class NotificationSettingsScreen extends StatelessWidget {
+  const NotificationSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Notification Settings')),
+      body: const Center(child: Text('Notification Settings Content')),
+    );
+  }
+}
+
+class PrivacySettingsScreen extends StatelessWidget {
+  const PrivacySettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Privacy Settings')),
+      body: const Center(child: Text('Privacy Settings Content')),
+    );
+  }
+}
+
+class ThemeSettingsScreen extends StatelessWidget {
+  const ThemeSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Theme Settings')),
+      body: const Center(child: Text('Theme Settings Content')),
+    );
+  }
+}
+
+class LanguageSettingsScreen extends StatelessWidget {
+  const LanguageSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Language Settings')),
+      body: const Center(child: Text('Language Settings Content')),
+    );
+  }
+}
+
+class StorageSettingsScreen extends StatelessWidget {
+  const StorageSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Storage Settings')),
+      body: const Center(child: Text('Storage Settings Content')),
+    );
+  }
+}
+
+class SecuritySettingsScreen extends StatelessWidget {
+  const SecuritySettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Security Settings')),
+      body: const Center(child: Text('Security Settings Content')),
+    );
+  }
+}
+
+class HelpSettingsScreen extends StatelessWidget {
+  const HelpSettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Help & Support')),
+      body: const Center(child: Text('Help & Support Content')),
+    );
+  }
+}
+

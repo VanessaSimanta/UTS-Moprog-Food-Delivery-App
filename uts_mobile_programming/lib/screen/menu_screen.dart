@@ -16,7 +16,7 @@ class _MenuScreenState extends State<MenuScreen> {
   //format untuk harga
   final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
 
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
@@ -72,53 +72,78 @@ class _MenuScreenState extends State<MenuScreen> {
           itemBuilder: (context, index) {
             final item = items[index];
             return Card(
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: ListTile(
-                leading: item.containsKey('imageURL')
-                    ? Image.network(
-                        item['imageURL'],
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      )
-                    : const Icon(Icons.image, size: 80, color: Colors.grey),
-                title: Text(item['name']),
-                subtitle: Column(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15), 
+              ),
+              elevation: 8, 
+              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16), 
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [Colors.white, Colors.grey[200]!],)
+                ),
+                padding: const EdgeInsets.all(12.0), 
+                height: 150,
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (item.containsKey('rating'))
-                      Row(
+                    item.containsKey('imageURL')
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0), 
+                            child: Image.network(
+                              item['imageURL'],
+                              width: 100, 
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : const Icon(Icons.image, size: 110, color: Colors.grey),
+                    const SizedBox(width: 30), 
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.star, color: Colors.orange, size: 16),
-                          const SizedBox(width: 4),
-                          Text('${item['rating']} (${item['reviews']}+)',
-                              style: const TextStyle(fontSize: 12)),
+                          Text(
+                            item['name'],
+                            style: const TextStyle(
+                              fontSize: 20, // Increased font size
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          if (item.containsKey('rating'))
+                            Row(
+                              children: [
+                                const Icon(Icons.star, color: Colors.orange, size: 16),
+                                const SizedBox(width: 6),
+                                Text(
+                                  '${item['rating']} (${item['reviews']}+)',
+                                  style: const TextStyle(fontSize: 14), // Adjust font size
+                                ),
+                              ],
+                            ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Rp. ${currencyFormat.format(item['price'])}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16, 
+                            ),
+                          ),
                         ],
                       ),
-                    const SizedBox(height: 4),
-                    Text('Rp. ${currencyFormat.format(item['price'])}',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          cartItems.add(item);
+                        });
+                        _showCart(context);
+                      },
+                      child: const Text('Tambah'),
+                    ),
                   ],
                 ),
-                trailing: ElevatedButton(
-                  onPressed: () {
-                    // Tambahkan item ke keranjang
-                    setState(() {
-                      cartItems.add(item);
-                    });
-                    // Tampilkan modal Cart
-                    _showCart(context);
-                  },
-                  child: const Text('Tambah'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailMenuScreen(menuItem: item),
-                    ),
-                  );
-                },
               ),
             );
           },
