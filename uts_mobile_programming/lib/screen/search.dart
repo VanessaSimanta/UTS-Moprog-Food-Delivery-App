@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/screen/payment.dart';
-import 'package:intl/intl.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class MenuItem {
@@ -8,90 +6,82 @@ class MenuItem {
   final String description;
   final double rating;
   final String imageUrl;
-  final int price;
+  final double price; // Tambahkan properti harga
 
   MenuItem({
     required this.name,
     required this.description,
     required this.rating,
     required this.imageUrl,
-    required this.price,
+    required this.price, // Tambahkan harga pada konstruktor
   });
 }
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
-
-  @override
-  _SearchScreenState createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  final List<MenuItem> cartItems = []; // List to hold cart items
-  final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
 
   @override
   Widget build(BuildContext context) {
     final List<MenuItem> menuItems = [
       MenuItem(
         name: 'Nasi Ayam Telur Asin',
-        description: 'Nasi dengan potongan ayam yang disajikan dengan bumbu telur asin yang khas.',
+        description: 'Delicious nasi udang with telur asin.',
         rating: 4.8,
         imageUrl: 'assets/search1.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Cabai Garam',
-        description: 'Nasi dengan potongan ayam yang disajikan dengan bumbu cabai garam yang gurih.',
+        description: 'Spicy nasi udang cabai garam.',
         rating: 4.7,
         imageUrl: 'assets/search2.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Kremes',
-        description: 'Nasi dengan potongan ayam yang disajikan dengan kremes yang crispy favorit semua orang.',
+        description: 'Nasi udang dengan saus padang khas.',
         rating: 4.6,
         imageUrl: 'assets/search2.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Bakar',
-        description: 'Nasi ayam bakar yang disajikan dengan bumbu khas restoran dan disajikan dengan nasi hangat yang pulen.',
+        description: 'Nasi ayam telur asin yang nikmat.',
         rating: 4.6,
         imageUrl: 'assets/search4.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Hainan',
-        description: 'Kelezatan tradisional nasi Hainan yang aromatik, dilengkapi dengan saus manis dan asam yang istimewa. Wajib dicoba!.',
+        description: 'Fuyunghai dengan saus asam manis.',
         rating: 4.3,
         imageUrl: 'assets/search5.webp',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Lada Hitam',
-        description: 'Nasi dengan sajian potongan ayam lada hitam yang disajikan dengan bumbu otentik.',
+        description: 'Muntahu lezat dengan bumbu khas.',
         rating: 4.5,
         imageUrl: 'assets/search6.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Kungpau',
-        description: 'Nasi yang disajikan dengan ayam kungpau khas yang memiliki rasa otentik.',
+        description: 'Muntahu lezat dengan bumbu khas.',
         rating: 4.2,
         imageUrl: 'assets/search7.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Sambal Matah',
-        description: 'Nasi yang disajikan dengan potongan ayam dengan sambal matah yang segar favorit semua. Wajib dicoba!',
+        description: 'Muntahu lezat dengan bumbu khas.',
         rating: 4.2,
         imageUrl: 'assets/search2.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Teriyaki',
-        description: 'Nasi hangat yang disajikan dengan potongan ayam teriyaki yang memiliki perpaduan rasa manis dan gurih.',
+        description: 'Muntahu lezat dengan bumbu khas.',
         rating: 4.8,
         imageUrl: 'assets/search9.webp',
         price: 23000,
@@ -163,82 +153,50 @@ class _SearchScreenState extends State<SearchScreen> {
                 return Card(
                   margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(15.0), // Rounded corners
                     side: BorderSide(color: Colors.orange.withOpacity(0.5), width: 1.0),
                   ),
                   elevation: 5.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16.0),
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0), // Rounded corners for image
+                      child: Image.asset(
+                        item.imageUrl,
+                        width: 100,  // Set width sama dengan height
+                        height: 100, // Set height sama dengan width untuk jadi kotak
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    title: Text(
+                      item.name,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(item.description),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          'Price: Rp ${item.price.toStringAsFixed(0)}', // Menampilkan harga
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        const SizedBox(height: 8.0),
                         Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Image.asset(
-                                item.imageUrl,
-                                width: 130,
-                                height: 130,
-                                fit: BoxFit.cover,
-                              ),
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow[700],
                             ),
-                            const SizedBox(width: 16.0),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item.name,
-                                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Text(
-                                    item.description,
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Text(
-                                    'Rp. ${currencyFormat.format(item.price)}', // Fixed price access
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 182, 111, 40),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.yellow[700],
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      Text(
-                                        item.rating.toString(),
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                            const SizedBox(width: 4.0),
+                            Text(
+                              item.rating.toString(),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ],
-                        ),
-                        const SizedBox(height: 0.0), // Space between content and button
-                        Align(
-                          alignment: Alignment.topRight, // Change alignment to topRight
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 2.0), // Add some top padding
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  cartItems.add(item);
-                                });
-                                _showCart(context);
-                              },
-                              child: const Text('Tambah'),
-                            ),
-                          ),
                         ),
                       ],
                     ),
@@ -251,85 +209,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-
-  void _showCart(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Keranjang Belanja',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const Divider(),
-            if (cartItems.isEmpty)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Keranjang Anda kosong',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              )
-            else
-              ...cartItems.map((item) {
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('Rp ${currencyFormat.format(item.price)}'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.remove_circle_outline),
-                    onPressed: () {
-                      setState(() {
-                        cartItems.remove(item); // Hapus item dari keranjang
-                      });
-                      Navigator.pop(context); // Tutup modal dan buka lagi
-                      _showCart(context); // Tampilkan ulang cart dengan item terbaru
-                    },
-                  ),
-                );
-              }).toList(),
-            if (cartItems.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // Logic untuk melanjutkan pembayaran
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PaymentPage(cartItems: cartItems.map((item) {
-                          return {
-                            'name': item.name,
-                            'price': item.price,
-                            'rating': item.rating,
-                            'description': item.description,
-                            'imageUrl': item.imageUrl,
-                          };
-                        }).toList()),
-                      ),
-                    );
-                  },
-                  child: const Text('Lanjutkan ke Pembayaran'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 40), // Full width button
-                  ),
-                ),
-              ),
-          ],
-        ),
-      );
-    },
-  );
 }
-}
-
 
 void main() {
   runApp(const MaterialApp(
