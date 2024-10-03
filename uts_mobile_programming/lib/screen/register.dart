@@ -113,6 +113,7 @@ class _RegisterState extends State<Register> {
                     const SizedBox(height: 20),
                     Card(
                       elevation: 6,
+                      color: Color.fromARGB(255, 252, 238, 220),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
