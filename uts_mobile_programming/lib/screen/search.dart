@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi dengan potongan ayam yang disajikan dengan bumbu telur asin yang khas.',
         rating: 4.8,
-        imageUrl: 'assets/search1.jpg',
+        imageUrl: 'assets/search1.png',
         price: 23000,
       ),
       MenuItem(
@@ -46,7 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi dengan potongan ayam yang disajikan dengan bumbu cabai garam yang gurih.',
         rating: 4.7,
-        imageUrl: 'assets/search2.jpg',
+        imageUrl: 'assets/search2.png',
         price: 23000,
       ),
       MenuItem(
@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi dengan potongan ayam yang disajikan dengan kremes yang crispy favorit semua orang.',
         rating: 4.6,
-        imageUrl: 'assets/search2.jpg',
+        imageUrl: 'assets/search3.png',
         price: 23000,
       ),
       MenuItem(
@@ -62,15 +62,15 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi ayam bakar yang disajikan dengan bumbu khas restoran dan disajikan dengan nasi hangat yang pulen.',
         rating: 4.6,
-        imageUrl: 'assets/search4.jpg',
+        imageUrl: 'assets/search4.png',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Hainan',
         description:
-            'Kelezatan tradisional nasi Hainan yang aromatik, dilengkapi dengan saus manis dan asam yang istimewa. Wajib dicoba!.',
+            'Kelezatan tradisional nasi Hainan yang aromatik, dilengkapi saus manis dan asam yang istimewa. Wajib dicoba!.',
         rating: 4.3,
-        imageUrl: 'assets/search5.webp',
+        imageUrl: 'assets/search5.png',
         price: 23000,
       ),
       MenuItem(
@@ -78,7 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi dengan sajian potongan ayam lada hitam yang disajikan dengan bumbu otentik.',
         rating: 4.5,
-        imageUrl: 'assets/search6.jpg',
+        imageUrl: 'assets/search6.png',
         price: 23000,
       ),
       MenuItem(
@@ -86,7 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi yang disajikan dengan ayam kungpau khas yang memiliki rasa otentik.',
         rating: 4.2,
-        imageUrl: 'assets/search7.jpg',
+        imageUrl: 'assets/search7.png',
         price: 23000,
       ),
       MenuItem(
@@ -94,7 +94,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi yang disajikan dengan potongan ayam dengan sambal matah yang segar favorit semua. Wajib dicoba!',
         rating: 4.2,
-        imageUrl: 'assets/search2.jpg',
+        imageUrl: 'assets/search8.png',
         price: 23000,
       ),
       MenuItem(
@@ -102,7 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
         description:
             'Nasi hangat yang disajikan dengan potongan ayam teriyaki yang memiliki perpaduan rasa manis dan gurih.',
         rating: 4.8,
-        imageUrl: 'assets/search9.webp',
+        imageUrl: 'assets/search9.png',
         price: 23000,
       )
     ];
