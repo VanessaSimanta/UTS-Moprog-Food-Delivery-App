@@ -1,46 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/pages/help_Center.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({
+    super.key,
+    this.title,
+    this.showBackArrow = true,
+    this.leadingIcon,
+    this.leadingOnPressed,
+    this.actions,
+  });
+
+  final Widget? title;
+  final bool showBackArrow;
+  final IconData? leadingIcon;
+  final VoidCallback? leadingOnPressed;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: showBackArrow
+        ? IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.keyboard_arrow_left, size: 30),
+          )
+        : leadingIcon != null
+          ? IconButton(
+              onPressed: leadingOnPressed,
+              icon: Icon(leadingIcon),
+            )
+          : null,
+      title: title,
+      actions: actions,
       backgroundColor: const Color(0xFFFF8811),
-      title: const Text(
-        'What Would You Like To Eat Today ?',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: Color(0xFFFFF8F0),
-          letterSpacing: 1.5,
-        ),
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(
-            Icons.help,
-            color: Color(0xFFFFF8F0),
-          ),
-          onPressed: () {
-            Navigator.push(
-                  context,
-                    MaterialPageRoute(builder: (context) => const HelpCenter()), 
-                        );
-          },
-        ),
-        IconButton(
-          icon: const Icon(
-            Icons.settings,
-            color: Color(0xFFFFF8F0),
-          ),
-          onPressed: () {
-           
-          },
-        ),
-      ],
-      elevation: 4,
     );
   }
 

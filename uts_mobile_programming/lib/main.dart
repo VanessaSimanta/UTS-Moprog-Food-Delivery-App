@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/pages/home.dart';
-import 'package:uts_mobile_programming/pages/login.dart';
+import 'package:uts_mobile_programming/screen/loading.dart';
+import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,16 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFFF8F0),
         ),
-        home: Login());
+        routes: {
+          '/detailMenu': (context) => const DetailMenuScreen(menuItem: {
+                'name': 'Example Menu',
+                'price': '10000',
+                'imageURL': 'https://via.placeholder.com/150',
+                'rating': 4.5,
+                'reviews': 20,
+              }),
+        },
+        home: Loading()
+    );
   }
 }
