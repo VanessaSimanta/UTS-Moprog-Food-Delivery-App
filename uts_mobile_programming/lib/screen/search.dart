@@ -35,19 +35,76 @@ class _SearchScreenState extends State<SearchScreen> {
     final List<MenuItem> menuItems = [
       MenuItem(
         name: 'Nasi Ayam Telur Asin',
-        description: 'Nasi dengan potongan ayam yang disajikan dengan bumbu telur asin yang khas.',
+        description:
+            'Nasi dengan potongan ayam yang disajikan dengan bumbu telur asin yang khas.',
         rating: 4.8,
         imageUrl: 'assets/search1.jpg',
         price: 23000,
       ),
       MenuItem(
         name: 'Nasi Ayam Cabai Garam',
-        description: 'Nasi dengan potongan ayam yang disajikan dengan bumbu cabai garam yang gurih.',
+        description:
+            'Nasi dengan potongan ayam yang disajikan dengan bumbu cabai garam yang gurih.',
         rating: 4.7,
-        imageUrl: 'assets/search1.jpg',
+        imageUrl: 'assets/search2.jpg',
         price: 23000,
       ),
-      // Tambahkan item lainnya sesuai kebutuhan...
+      MenuItem(
+        name: 'Nasi Ayam Kremes',
+        description:
+            'Nasi dengan potongan ayam yang disajikan dengan kremes yang crispy favorit semua orang.',
+        rating: 4.6,
+        imageUrl: 'assets/search2.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Bakar',
+        description:
+            'Nasi ayam bakar yang disajikan dengan bumbu khas restoran dan disajikan dengan nasi hangat yang pulen.',
+        rating: 4.6,
+        imageUrl: 'assets/search4.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Hainan',
+        description:
+            'Kelezatan tradisional nasi Hainan yang aromatik, dilengkapi dengan saus manis dan asam yang istimewa. Wajib dicoba!.',
+        rating: 4.3,
+        imageUrl: 'assets/search5.webp',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Lada Hitam',
+        description:
+            'Nasi dengan sajian potongan ayam lada hitam yang disajikan dengan bumbu otentik.',
+        rating: 4.5,
+        imageUrl: 'assets/search6.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Kungpau',
+        description:
+            'Nasi yang disajikan dengan ayam kungpau khas yang memiliki rasa otentik.',
+        rating: 4.2,
+        imageUrl: 'assets/search7.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Sambal Matah',
+        description:
+            'Nasi yang disajikan dengan potongan ayam dengan sambal matah yang segar favorit semua. Wajib dicoba!',
+        rating: 4.2,
+        imageUrl: 'assets/search2.jpg',
+        price: 23000,
+      ),
+      MenuItem(
+        name: 'Nasi Ayam Teriyaki',
+        description:
+            'Nasi hangat yang disajikan dengan potongan ayam teriyaki yang memiliki perpaduan rasa manis dan gurih.',
+        rating: 4.8,
+        imageUrl: 'assets/search9.webp',
+        price: 23000,
+      )
     ];
 
     return Scaffold(
@@ -85,14 +142,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search, color: Colors.orange),
+                      prefixIcon:
+                          const Icon(Icons.search, color: Colors.orange),
                       hintText: 'Find Your Favorite Here!',
                       hintStyle: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16.0,
                         fontWeight: FontWeight.w400,
                       ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
                         borderSide: BorderSide.none,
@@ -113,10 +172,12 @@ class _SearchScreenState extends State<SearchScreen> {
               itemBuilder: (context, index) {
                 final item = menuItems[index];
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Colors.orange.withOpacity(0.5), width: 1.0),
+                    side: BorderSide(
+                        color: Colors.orange.withOpacity(0.5), width: 1.0),
                   ),
                   elevation: 5.0,
                   child: Padding(
@@ -142,7 +203,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                 children: [
                                   Text(
                                     item.name,
-                                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 8.0),
                                   Text(
@@ -204,80 +267,83 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
- void _showCart(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Keranjang Belanja',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const Divider(),
-            if (cartItems.isEmpty)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Keranjang Anda kosong',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              )
-            else
-              ...cartItems.map((item) {
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('Rp ${currencyFormat.format(item.price)}'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.remove_circle_outline),
-                    onPressed: () {
-                      setState(() {
-                        cartItems.remove(item); // Hapus item dari keranjang
-                      });
-                      Navigator.pop(context); // Tutup modal dan buka lagi
-                      _showCart(context); // Tampilkan ulang cart dengan item terbaru
-                    },
-                  ),
-                );
-              }).toList(),
-            if (cartItems.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // Logic untuk melanjutkan pembayaran
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PaymentPage(cartItems: cartItems.map((item) {
-                          return {
-                            'name': item.name,
-                            'price': item.price,
-                            'rating': item.rating,
-                            'description': item.description,
-                            'imageUrl': item.imageUrl,
-                          };
-                        }).toList()),
-                      ),
-                    );
-                  },
-                  child: const Text('Lanjutkan ke Pembayaran'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 40), // Full width button
-                  ),
-                ),
+  void _showCart(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Keranjang Belanja',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-          ],
-        ),
-      );
-    },
-  );
-}
+              const Divider(),
+              if (cartItems.isEmpty)
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Keranjang Anda kosong',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                )
+              else
+                ...cartItems.map((item) {
+                  return ListTile(
+                    title: Text(item.name),
+                    subtitle: Text('Rp ${currencyFormat.format(item.price)}'),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.remove_circle_outline),
+                      onPressed: () {
+                        setState(() {
+                          cartItems.remove(item); // Hapus item dari keranjang
+                        });
+                        Navigator.pop(context); // Tutup modal dan buka lagi
+                        _showCart(
+                            context); // Tampilkan ulang cart dengan item terbaru
+                      },
+                    ),
+                  );
+                }).toList(),
+              if (cartItems.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      // Logic untuk melanjutkan pembayaran
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PaymentPage(
+                              cartItems: cartItems.map((item) {
+                            return {
+                              'name': item.name,
+                              'price': item.price,
+                              'rating': item.rating,
+                              'description': item.description,
+                              'imageUrl': item.imageUrl,
+                            };
+                          }).toList()),
+                        ),
+                      );
+                    },
+                    child: const Text('Lanjutkan ke Pembayaran'),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize:
+                          const Size(double.infinity, 40), // Full width button
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
