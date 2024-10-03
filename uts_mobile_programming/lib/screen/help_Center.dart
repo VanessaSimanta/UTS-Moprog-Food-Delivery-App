@@ -100,7 +100,7 @@ class HelpCenter extends StatelessWidget {
                           ListTile(
                             leading: const Icon(Icons.email, color: Colors.orange),
                             title: const Text('Email'),
-                            subtitle: const Text('dynastycenter@gmail.com'),
+                            subtitle: const Text('helpcenter@gmail.com'),
                             onTap: () {
                               // Implement email functionality
                             },
@@ -206,7 +206,7 @@ class HelpCenter extends StatelessWidget {
       },
       {
         'question': 'Apakah ada biaya tambahan untuk pengiriman cepat?',
-        'answer': 'Ya, pengiriman cepat akan dikenakan biaya tambahan.'
+        'answer': 'Ya, pengiriman cepat akan dikenakan biaya tambahan yang akan diinformasikan pada saat Anda memilih opsi pengiriman tersebut.'
       },
     ];
 
