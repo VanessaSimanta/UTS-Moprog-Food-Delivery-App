@@ -121,7 +121,10 @@ class HomePageContent extends StatelessWidget {
               color: Color(0xFFFFF8F0),
             ),
             onPressed: () {
-              // Add settings action here
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  SettingsScreen()),
+              );
             },
           ),
         ],
@@ -258,7 +261,7 @@ class HomePageContent extends StatelessWidget {
                     "Popular Menu",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: 22,
                     ),
                   ),
                   const Spacer(),
@@ -314,7 +317,7 @@ class SettingsScreen extends StatefulWidget {
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<MenuScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {

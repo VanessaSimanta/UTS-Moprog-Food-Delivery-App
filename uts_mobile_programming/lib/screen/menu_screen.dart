@@ -20,7 +20,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       appBar: AppBarWidget(
         title: const Text(
-          "Profile",
+          "Menu",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),

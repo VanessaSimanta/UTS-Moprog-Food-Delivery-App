@@ -73,7 +73,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       appBar: AppBarWidget(
         title: const Text(
-          "Profile",
+          "Register",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
