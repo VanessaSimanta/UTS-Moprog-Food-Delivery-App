@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/screen/payment.dart';
-import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 import 'package:uts_mobile_programming/screen/item_menu.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
-import 'package:intl/intl.dart'; 
+import 'package:intl/intl.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class _MenuScreenState extends State<MenuScreen> {
   //format untuk harga
   final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
@@ -73,31 +72,33 @@ class _MenuScreenState extends State<MenuScreen> {
             final item = items[index];
             return Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15), 
+                borderRadius: BorderRadius.circular(15),
               ),
-              elevation: 8, 
-              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16), 
+              elevation: 8,
+              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [Colors.white, Colors.grey[200]!],)
-                ),
-                padding: const EdgeInsets.all(12.0), 
+                    gradient: LinearGradient(
+                  colors: [Colors.white, Colors.grey[200]!],
+                )),
+                padding: const EdgeInsets.all(12.0),
                 height: 150,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     item.containsKey('imageURL')
                         ? ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0), 
+                            borderRadius: BorderRadius.circular(20.0),
                             child: Image.network(
                               item['imageURL'],
-                              width: 100, 
+                              width: 100,
                               height: 100,
                               fit: BoxFit.cover,
                             ),
                           )
-                        : const Icon(Icons.image, size: 110, color: Colors.grey),
-                    const SizedBox(width: 30), 
+                        : const Icon(Icons.image,
+                            size: 110, color: Colors.grey),
+                    const SizedBox(width: 30),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,11 +115,13 @@ class _MenuScreenState extends State<MenuScreen> {
                           if (item.containsKey('rating'))
                             Row(
                               children: [
-                                const Icon(Icons.star, color: Colors.orange, size: 16),
+                                const Icon(Icons.star,
+                                    color: Colors.orange, size: 16),
                                 const SizedBox(width: 6),
                                 Text(
                                   '${item['rating']} (${item['reviews']}+)',
-                                  style: const TextStyle(fontSize: 14), // Adjust font size
+                                  style: const TextStyle(
+                                      fontSize: 14), // Adjust font size
                                 ),
                               ],
                             ),
@@ -127,7 +130,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             'Rp. ${currencyFormat.format(item['price'])}',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16, 
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -154,21 +157,20 @@ class _MenuScreenState extends State<MenuScreen> {
 
 //untuk mengembalikan menu dengan rating tertinggi
   List<Map<String, dynamic>> getPopularItems() {
-  // Gabungkan semua kategori menjadi satu list
-  List<Map<String, dynamic>> allItems = [
-    ...ayamItems,
-    ...seafoodItems,
-    ...healthItems,
-    ...minumanItems,
-  ];
+    // Gabungkan semua kategori menjadi satu list
+    List<Map<String, dynamic>> allItems = [
+      ...ayamItems,
+      ...seafoodItems,
+      ...healthItems,
+      ...minumanItems,
+    ];
 
-  // Urutkan berdasarkan rating tertinggi
-  allItems.sort((a, b) => b['rating'].compareTo(a['rating']));
+    // Urutkan berdasarkan rating tertinggi
+    allItems.sort((a, b) => b['rating'].compareTo(a['rating']));
 
-  // Ambil hanya item dengan rating di atas 4.5 (misalnya)
-  return allItems.where((item) => item['rating'] >= 4.5).toList();
-}
-
+    // Ambil hanya item dengan rating di atas 4.5 (misalnya)
+    return allItems.where((item) => item['rating'] >= 4.5).toList();
+  }
 
   // Fungsi untuk menampilkan Cart dalam modal bottom sheet
   void _showCart(BuildContext context) {

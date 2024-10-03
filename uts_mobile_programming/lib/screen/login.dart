@@ -6,6 +6,7 @@ import 'package:uts_mobile_programming/models/user.dart';
 import 'package:uts_mobile_programming/screen/home.dart';
 import 'package:uts_mobile_programming/screen/register.dart';
 import 'package:uts_mobile_programming/services/user_services.dart';
+import 'package:uts_mobile_programming/loginComponents/button.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -113,32 +114,46 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 10),
 
-                  // login button
-                  // login button with a modern look
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _loginUser(context); // Pass context to the function
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.deepOrangeAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  // forgot password?
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.grey[600]),
                         ),
-                        elevation: 5,
-                      ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(fontSize: 18),
-                      ),
+                      ],
                     ),
                   ),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 25),
+
+                  Button(),
+                  // login button
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       if (_formKey.currentState!.validate()) {
+                  //         _loginUser(context); // Pass context to the function
+                  //       }
+                  //     },
+                  //     style: ElevatedButton.styleFrom(
+                  //       padding: const EdgeInsets.symmetric(vertical: 16),
+                  //       backgroundColor: Colors.deepOrangeAccent,
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //       elevation: 5,
+                  //     ),
+                  //     child: const Text(
+                  //       'Login',
+                  //       style: TextStyle(fontSize: 18),
+                  //     ),
+                  //   ),
+                  // ),
 
                   // register text with better alignment and padding
                   GestureDetector(
