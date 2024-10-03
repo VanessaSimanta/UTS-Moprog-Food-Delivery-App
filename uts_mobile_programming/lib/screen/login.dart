@@ -57,62 +57,91 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.orange.shade400,
       body: SafeArea(
         child: Center(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 50),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 50),
 
-                // logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
-
-                const SizedBox(height: 50),
-
-                // welcome back
-                Text(
-                  'Welcome Back',
-                  style: TextStyle(
-                    color: Colors.grey[100],
-                    fontSize: 16,
+                  // logo
+                  const Icon(
+                    Icons.lock_rounded,
+                    size: 100,
+                    color: Colors.white,
                   ),
-                ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 40),
 
-                // username textfield
-                MyTextfield(
-                  controller: usernameController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
+                  // welcome back
+                  Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      color: Colors.grey[100],
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
 
-                // password textfield
-                MyTextfield(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                // login button
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _loginUser(context); // Pass context to the function
-                    }
-                  },
-                  child: const Text('Login'),
-                ),
-                const SizedBox(height: 20),
+                  Text(
+                    'Please login to your account',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 16,
+                    ),
+                  ),
 
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: GestureDetector(
+                  const SizedBox(height: 30),
+
+                  // username textfield
+                  MyTextfield(
+                    controller: usernameController,
+                    hintText: 'Email',
+                    obscureText: false,
+                  ),
+                  const SizedBox(height: 10),
+
+                  // password textfield
+                  MyTextfield(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 10),
+
+                  // login button
+                  // login button with a modern look
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _loginUser(context); // Pass context to the function
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: Colors.deepOrangeAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 5,
+                      ),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // register text with better alignment and padding
+                  GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
@@ -121,16 +150,15 @@ class _LoginState extends State<Login> {
                       );
                     },
                     child: const Text(
-                      "Don't Have an Account Yet? Register!",
-                      textAlign: TextAlign.right,
+                      "Don't Have an Account? Register",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 19, 19, 19),
+                        color: Colors.white,
                         decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

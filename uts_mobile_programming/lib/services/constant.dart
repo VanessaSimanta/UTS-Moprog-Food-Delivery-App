@@ -1,10 +1,10 @@
-//link url untuk connect ke back end 
-const baseURL = 'http://192.168.0.141:8000/api';
+//link url untuk connect ke back end
+const baseURL = 'http://192.168.0.135:8000/api';
 const loginURL = baseURL + '/login';
 const registerURL = baseURL + '/register';
 const logoutURL = baseURL + '/logout';
 const userURL = baseURL + '/user';
-const updateUserDetailsURL =  baseURL + '/user/details';
+const updateUserDetailsURL = baseURL + '/user/details';
 const deleteAccountURL = baseURL + '/delete-account';
 
 const serverError = 'Server error';
