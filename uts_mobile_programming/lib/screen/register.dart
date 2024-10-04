@@ -15,7 +15,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  // Text controllers untuk input data 
+  // Text controllers for input data
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _usernameController = TextEditingController();
@@ -23,13 +23,13 @@ class _RegisterState extends State<Register> {
   final _phoneNumberController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  // Form key untuk validation
+  // Form key for validation
   final _formKey = GlobalKey<FormState>();
 
-  // terms and condition 
+  // Terms and condition
   bool _isChecked = false;
 
-  // function register user
+  // Function to register user
   void _registerUser(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       String firstName = _firstNameController.text;
@@ -39,14 +39,15 @@ class _RegisterState extends State<Register> {
       String phoneNumber = _phoneNumberController.text;
       String password = _passwordController.text;
 
-     //panggil API register di back end
-      ApiResponse response = await register(firstName, lastName, username, email, phoneNumber, password);
-      
+      // Call API register in the back end
+      ApiResponse response = await register(
+          firstName, lastName, username, email, phoneNumber, password);
+
       if (response.error == null) {
-        //save dan ke halaman home
+        // Save and go to home page
         _saveAndDirectToHome(response.data as User);
       } else {
-       //error message
+        // Error message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${response.error}'),
@@ -56,7 +57,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  // function buat save dan ke halaman home
+  // Function to save and go to home page
   void _saveAndDirectToHome(User user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString('token', user.token ?? '');
@@ -94,7 +95,7 @@ class _RegisterState extends State<Register> {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(16),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -104,7 +105,10 @@ class _RegisterState extends State<Register> {
                     Center(
                       child: Text(
                         "Create Your Account",
-                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
@@ -121,7 +125,7 @@ class _RegisterState extends State<Register> {
                         padding: const EdgeInsets.all(20),
                         child: Column(
                           children: [
-                            // First and Last Name 
+                            // First and Last Name
                             Row(
                               children: [
                                 Expanded(
@@ -160,7 +164,7 @@ class _RegisterState extends State<Register> {
                               ],
                             ),
                             const SizedBox(height: 16),
-                            // Username 
+                            // Username
                             TextFormField(
                               controller: _usernameController,
                               decoration: const InputDecoration(
@@ -176,7 +180,7 @@ class _RegisterState extends State<Register> {
                               },
                             ),
                             const SizedBox(height: 16),
-                            // Email 
+                            // Email
                             TextFormField(
                               controller: _emailController,
                               decoration: const InputDecoration(
@@ -188,14 +192,15 @@ class _RegisterState extends State<Register> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
                                 }
-                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                    .hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
                                 return null;
                               },
                             ),
                             const SizedBox(height: 16),
-                            // Phone Number 
+                            // Phone Number
                             TextFormField(
                               controller: _phoneNumberController,
                               decoration: const InputDecoration(
@@ -211,7 +216,7 @@ class _RegisterState extends State<Register> {
                               },
                             ),
                             const SizedBox(height: 16),
-                            // Password 
+                            // Password
                             TextFormField(
                               controller: _passwordController,
                               obscureText: true,
@@ -256,7 +261,8 @@ class _RegisterState extends State<Register> {
                                           text: 'terms',
                                           style: TextStyle(
                                             color: Color(0xFFFF8811),
-                                            decoration: TextDecoration.underline,
+                                            decoration:
+                                                TextDecoration.underline,
                                           ),
                                         ),
                                         const TextSpan(text: ' and '),
@@ -264,7 +270,8 @@ class _RegisterState extends State<Register> {
                                           text: 'conditions',
                                           style: TextStyle(
                                             color: Color(0xFFFF8811),
-                                            decoration: TextDecoration.underline,
+                                            decoration:
+                                                TextDecoration.underline,
                                           ),
                                         ),
                                         const TextSpan(text: '.'),
@@ -280,11 +287,13 @@ class _RegisterState extends State<Register> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_isChecked) {
-                                    _registerUser(context); // Call the register function
+                                    _registerUser(
+                                        context); // Call the register function
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                        content: Text('Please agree to the terms and conditions'),
+                                        content: Text(
+                                            'Please agree to the terms and conditions'),
                                       ),
                                     );
                                   }
