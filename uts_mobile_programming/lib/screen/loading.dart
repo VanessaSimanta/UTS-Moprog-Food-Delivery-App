@@ -5,52 +5,57 @@ import 'package:uts_mobile_programming/services/constant.dart';
 import 'package:uts_mobile_programming/services/user_services.dart';
 import 'package:uts_mobile_programming/screen/login.dart';
 
-//LOADING SCREEN 
+//LOADING SCREEN
 class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();
 }
 
 class _LoadingState extends State<Loading> {
-
   void _loadUserInfo() async {
-  await Future.delayed(const Duration(seconds: 2)); 
-  String token = await getToken();
-  
-  //token kosong masuk ke login
-  if (token == '') {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => Login()), 
-      (route) => false
-    );
-    //udah ada token langsung ke home
-  } else {
-    ApiResponse response = await getUserDetail();
-    if (response.error == null) {
+    await Future.delayed(const Duration(seconds: 2));
+    String token = await getToken();
+
+    //token kosong masuk ke login
+    if (token == '') {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Home()), 
-        (route) => false
-      );
-      //error masuk ke login
-    } else if (response.error == unathorized) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Login()), 
-        (route) => false
-      );
+          MaterialPageRoute(builder: (context) => Login()), (route) => false);
+      //udah ada token langsung ke home
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${response.error}')),
-      );
+      ApiResponse response = await getUserDetail();
+      if (response.error == null) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => Home()), (route) => false);
+        //error masuk ke login
+      } else if (response.error == unathorized) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => Login()), (route) => false);
+      } else {
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Example'),
+          ),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('This is a SnackBar')),
+                );
+              },
+              child: Text('Show SnackBar'),
+            ),
+          ),
+        );
+      }
     }
   }
-}
 
   @override
-  void initState(){
+  void initState() {
     _loadUserInfo();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
