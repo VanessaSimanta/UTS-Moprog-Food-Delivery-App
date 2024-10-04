@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class PromotionPage extends StatelessWidget {
@@ -20,37 +21,47 @@ class PromotionPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
+          // Add a featured promotional banner at the top
+          Container(
+            margin: const EdgeInsets.only(bottom: 20.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12.0),
+              child: Image.network(
+                'https://via.placeholder.com/600x300', // URL for banner
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 180,
+              ),
+            ),
+          ),
           PromotionCard(
-            imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
+            imageUrl: 'https://picsum.photos/540', // URL image
             title: 'Promo 1 - Buy 1 Get 1 Free',
             description:
-                'Nikmati promosi spesial, beli 1 paket dapat 1 minuman gratis!',
+                'Enjoy a special offer! Buy 1 set and get 1 drink for free.',
             onClaim: () {
-              // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Promo 1 claimed!')),
               );
             },
           ),
           PromotionCard(
-            imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
+            imageUrl: 'https://picsum.photos/541', // URL image
             title: 'Promo 2 - Cashback 25%',
             description:
-                'Dapatkan cashback 25% untuk setiap pembelian makanan menggunakan aplikasi ini.',
+                'Get 25% cashback on every food purchase using this app.',
             onClaim: () {
-              // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Promo 2 claimed!')),
               );
             },
           ),
           PromotionCard(
-            imageUrl: 'https://via.placeholder.com/150', // URL gambar promosi
-            title: 'Promo 3 - Diskon 30%',
+            imageUrl: 'https://picsum.photos/542', // URL image
+            title: 'Promo 3 - 30% Discount',
             description:
-                'Diskon spesial 30% untuk pelanggan baru, berlaku untuk semua makanan.',
+                'Special 30% discount for new customers. Valid on all food items.',
             onClaim: () {
-              // Logic untuk claim promosi
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Promo 3 claimed!')),
               );
@@ -62,13 +73,14 @@ class PromotionPage extends StatelessWidget {
   }
 }
 
-class PromotionCard extends StatelessWidget {
+class PromotionCard extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String description;
   final VoidCallback onClaim;
 
-  const PromotionCard({super.key, 
+  const PromotionCard({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
@@ -76,35 +88,88 @@ class PromotionCard extends StatelessWidget {
   });
 
   @override
+  _PromotionCardState createState() => _PromotionCardState();
+}
+
+class _PromotionCardState extends State<PromotionCard> {
+  bool isSaved = false; // Track if the promotion is saved
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(imageUrl,
-              fit: BoxFit.cover, height: 150, width: double.infinity),
+          ClipRRect(
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(12.0)),
+            child: Image.network(
+              widget.imageUrl,
+              fit: BoxFit.cover,
+              height: 150,
+              width: double.infinity,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  widget.title,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  description,
+                  widget.description,
                   style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                 ),
                 const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton(
-                    onPressed: onClaim,
-                    child: const Text('Claim Now'),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: widget.onClaim,
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                      ),
+                      child: const Text('Claim Now'),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            // Logic for sharing promo
+                            Share.share(
+                              '${widget.title}\n${widget.description}',
+                              subject: 'Check out this awesome promotion!',
+                            );
+                          },
+                          icon: const Icon(Icons.share, color: Colors.orange),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isSaved = !isSaved; // Toggle saved state
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(isSaved
+                                      ? 'Promo saved for later!'
+                                      : 'Promo removed from saved!')),
+                            );
+                          },
+                          icon: Icon(
+                            isSaved ? Icons.bookmark : Icons.bookmark_border,
+                            color: Colors.orange,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

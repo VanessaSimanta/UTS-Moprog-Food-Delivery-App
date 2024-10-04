@@ -12,7 +12,6 @@ import 'package:uts_mobile_programming/screen/account.dart';
 import 'package:uts_mobile_programming/screen/help_Center.dart';
 import 'package:uts_mobile_programming/screen/item_menu.dart';
 
-
 //HOME SCREEN
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -27,7 +26,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _pages = [
     const HomePageContent(),
     MenuScreen(),
-    const PromotionPage(),
+    PromotionPage(),
     const Account(),
   ];
 
@@ -50,7 +49,7 @@ class _HomeState extends State<Home> {
 class HomePageContent extends StatelessWidget {
   const HomePageContent({super.key});
 
- //Function untuk sort item popular based on ratings
+  //Function untuk sort item popular based on ratings
   List<Map<String, dynamic>> getPopularItems() {
     List<Map<String, dynamic>> allItems = [
       ...ayamItems,
@@ -80,22 +79,21 @@ class HomePageContent extends StatelessWidget {
 
   //function untuk mendapatkan newest item
   List<Map<String, dynamic>> getNewestItems() {
-  List<Map<String, dynamic>> allItems = [
-    ...ayamItems,
-    ...seafoodItems,
-    ...healthItems,
-    ...minumanItems,
-  ];
+    List<Map<String, dynamic>> allItems = [
+      ...ayamItems,
+      ...seafoodItems,
+      ...healthItems,
+      ...minumanItems,
+    ];
 
-  allItems.sort((a, b) {
-    DateTime dateA = DateTime.parse(a['date']);
-    DateTime dateB = DateTime.parse(b['date']);
-    return dateB.compareTo(dateA); 
-  });
+    allItems.sort((a, b) {
+      DateTime dateA = DateTime.parse(a['date']);
+      DateTime dateB = DateTime.parse(b['date']);
+      return dateB.compareTo(dateA);
+    });
 
-  return allItems.take(5).toList();
-}
-
+    return allItems.take(5).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +121,7 @@ class HomePageContent extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  SettingsScreen()),
+                MaterialPageRoute(builder: (context) => SettingsScreen()),
               );
             },
           ),
@@ -271,11 +269,10 @@ class HomePageContent extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                           MaterialPageRoute(
-                            builder: (context) => PopularItem(
-                              popularItems: getPopularItems()
-                            ),
-                           ),
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PopularItem(popularItems: getPopularItems()),
+                          ),
                         );
                       },
                       child: const Text(
@@ -297,15 +294,15 @@ class HomePageContent extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 30, left: 10),
               child: Text(
-                  "Newest Item",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
+                "Newest Item",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
                 ),
               ),
-               NewestItemWidget(items: getNewestItems()),
-            ],
+            ),
+            NewestItemWidget(items: getNewestItems()),
+          ],
         ),
       ),
     );
@@ -318,7 +315,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -380,7 +376,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildSettingTile(BuildContext context, IconData icon, String title, Widget screen) {
+  Widget _buildSettingTile(
+      BuildContext context, IconData icon, String title, Widget screen) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Material(
@@ -389,7 +386,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => screen));
           },
           child: Container(
             height: 60, // Increased height for the button
@@ -398,7 +396,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 Icon(icon, size: 28), // Larger icon size
                 const SizedBox(width: 16),
-                Expanded(child: Text(title, style: const TextStyle(fontSize: 18))), // Larger text size
+                Expanded(
+                    child: Text(title,
+                        style:
+                            const TextStyle(fontSize: 18))), // Larger text size
               ],
             ),
           ),
@@ -504,4 +505,3 @@ class HelpSettingsScreen extends StatelessWidget {
     );
   }
 }
-
