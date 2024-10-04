@@ -12,41 +12,42 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  bool _hasNavigated = false; // biar tidak loop
+
   void _loadUserInfo() async {
     await Future.delayed(const Duration(seconds: 2));
     String token = await getToken();
 
+    if (_hasNavigated) return; // biar tidak loop
+
     //token kosong masuk ke login
     if (token == '') {
+      _hasNavigated = true; // Mark as navigated
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Login()), (route) => false);
-      //udah ada token langsung ke home
+      return;
+    }
+
+    //udah ada token langsung ke home
+    ApiResponse response = await getUserDetail();
+
+    if (_hasNavigated) return; // biar tidak loop
+
+    if (response.error == null) {
+      // kalau tidak ada error, ke home
+      _hasNavigated = true;
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Home()), (route) => false);
+    } else if (response.error == unathorized) {
+      // kalau error masuk ke login
+      _hasNavigated = true;
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Login()), (route) => false);
     } else {
-      ApiResponse response = await getUserDetail();
-      if (response.error == null) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Home()), (route) => false);
-        //error masuk ke login
-      } else if (response.error == unathorized) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Login()), (route) => false);
-      } else {
-        Scaffold(
-          appBar: AppBar(
-            title: Text('Example'),
-          ),
-          body: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('This is a SnackBar')),
-                );
-              },
-              child: Text('Show SnackBar'),
-            ),
-          ),
-        );
-      }
+      // error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response.error ?? 'Error')),
+      );
     }
   }
 
@@ -63,8 +64,7 @@ class _LoadingState extends State<Loading> {
       color: Colors.white,
       child: Center(
         child: CircularProgressIndicator(
-          valueColor:
-              AlwaysStoppedAnimation<Color>(Colors.orange), // Change to orange
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
         ),
       ),
     );
