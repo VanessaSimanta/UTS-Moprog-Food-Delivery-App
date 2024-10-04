@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_programming/screen/tracking.dart';
 
 class PaymentPage extends StatefulWidget {
   final List<Map<String, dynamic>> cartItems;
@@ -43,7 +44,8 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
               trailing: Text(
                 'Rp ${totalPrice.toString()}',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 20),
@@ -90,20 +92,51 @@ class _PaymentPageState extends State<PaymentPage> {
               onPressed: selectedPaymentMethod.isEmpty
                   ? null
                   : () {
+                      // Show processing message
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(
                                 'Processing payment via $selectedPaymentMethod...')),
                       );
+
+                      // Delay and navigate to TrackingScreen
+                      Future.delayed(const Duration(seconds: 3), () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TrackingProgressScreen()),
+                        );
+                      });
                     },
               child: const Text('Pay now'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 textStyle: const TextStyle(fontSize: 18),
-                minimumSize: const Size(double.infinity, 50), // Full width button
+                minimumSize:
+                    const Size(double.infinity, 50), // Full width button
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// Create a simple Tracking Screen
+class TrackingScreen extends StatelessWidget {
+  const TrackingScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tracking Order'),
+      ),
+      body: Center(
+        child: Text(
+          'Your order is being processed!',
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
@@ -117,7 +150,8 @@ class PaymentMethodTile extends StatelessWidget {
   final String currentMethod;
   final VoidCallback onTap;
 
-  const PaymentMethodTile({super.key, 
+  const PaymentMethodTile({
+    super.key,
     required this.icon,
     required this.title,
     required this.selectedMethod,
