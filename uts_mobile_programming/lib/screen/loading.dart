@@ -62,7 +62,10 @@ class _LoadingState extends State<Loading> {
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
       child: Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          valueColor:
+              AlwaysStoppedAnimation<Color>(Colors.orange), // Change to orange
+        ),
       ),
     );
   }
