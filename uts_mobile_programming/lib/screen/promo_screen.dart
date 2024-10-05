@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class PromotionPage extends StatelessWidget {
@@ -143,9 +142,8 @@ class _PromotionCardState extends State<PromotionCard> {
                         IconButton(
                           onPressed: () {
                             // Logic for sharing promo
-                            Share.share(
-                              '${widget.title}\n${widget.description}',
-                              subject: 'Check out this awesome promotion!',
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Promo shared!')),
                             );
                           },
                           icon: const Icon(Icons.share, color: Colors.orange),
