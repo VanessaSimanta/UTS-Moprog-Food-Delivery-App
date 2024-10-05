@@ -58,8 +58,9 @@ class _LoadingState extends State<Loading> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Container(
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
       child: Center(
@@ -67,6 +68,8 @@ class _LoadingState extends State<Loading> {
           valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
