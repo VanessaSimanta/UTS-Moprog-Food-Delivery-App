@@ -2,6 +2,23 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
+import 'package:uts_mobile_programming/screen/review_order_screen.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:uts_mobile_programming/models/order.dart';
+
+class Order {
+  List<OrderItem> items;
+
+  Order({required this.items});
+}
+
+class OrderItem {
+  String name;
+  double? rating;
+  String? review;
+
+  OrderItem({required this.name, this.rating, this.review});
+}
 
 class TrackingProgressScreen extends StatefulWidget {
   const TrackingProgressScreen({super.key});
@@ -30,6 +47,13 @@ class _TrackingProgressScreenState extends State<TrackingProgressScreen> {
   ];
 
   bool showFinishButton = false;
+
+  Order order = Order(
+    items: [
+      OrderItem(name: "Nasi Goreng", rating: null, review: null),
+      OrderItem(name: "Ayam Bakar", rating: null, review: null),
+    ],
+  );
 
   // Randomize order status but avoid picking the same step
   void randomizeStep() {
@@ -185,7 +209,8 @@ class _TrackingProgressScreenState extends State<TrackingProgressScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ReviewScreen(),
+                                builder: (context) => ReviewOrderScreen(
+                                    order: order), // Kirim data pesanan
                               ),
                             );
                           }
