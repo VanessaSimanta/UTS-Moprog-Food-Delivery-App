@@ -25,8 +25,7 @@ class PromotionPage extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
-              child: Image.network(
-                'https://via.placeholder.com/600x300', // URL for banner
+              child: Image.asset('assets/pict1.jpeg', // URL for banner
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 180,
