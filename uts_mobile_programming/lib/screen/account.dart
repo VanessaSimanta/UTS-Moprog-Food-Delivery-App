@@ -79,32 +79,54 @@ class _AccountState extends State<Account> {
 
 //pop up delete confirmation
   Future<bool> _showDeleteConfirmationDialog() async {
-    return await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Delete Account'),
-          content: const Text('Are you sure you want to delete your account? This action cannot be undone.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false), 
-              child: const Text('Cancel', style: TextStyle(fontWeight: FontWeight.w700),),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(true), 
-              child: const Text(
-                'Delete',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red, 
-                ),
+  return await showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0), 
+        ),
+        backgroundColor: Color.fromARGB(255, 255, 251, 245), 
+        title: const Text(
+          'Delete Account',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        content: const Text(
+          'Are you sure you want to delete your account? This action cannot be undone.',
+          style: TextStyle(
+            color: Colors.black54, 
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false), 
+            child: const Text(
+              'Cancel',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.blue, 
               ),
             ),
-          ],
-        );
-      },
-    ) ?? false; 
-  }
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true), 
+            child: const Text(
+              'Delete',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red, 
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  ) ?? false; 
+}
+
 
   @override
   Widget build(BuildContext context) {

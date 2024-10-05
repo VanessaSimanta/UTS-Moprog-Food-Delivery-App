@@ -53,134 +53,134 @@ class _MenuScreenState extends State<MenuScreen> {
 
   // Fungsi untuk membuat bagian kategori
   Widget _buildCategorySection(String title, List<Map<String, dynamic>> items) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.bold,
-            ),
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        ListView.builder(
-          shrinkWrap: true, // Menggunakan shrinkWrap untuk membatasi ukuran ListView
-          physics: const NeverScrollableScrollPhysics(), // Memastikan ListView tidak bisa di-scroll
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
-            return GestureDetector(
-              onTap: () {
-                // Navigasi ke detail menu saat item di-tap
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailMenuScreen(menuItem: item),
-                  ),
-                );
-              },
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+      ),
+      ListView.builder(
+        shrinkWrap: true, // Use shrinkWrap to limit ListView size
+        physics: const NeverScrollableScrollPhysics(), // Prevent scrolling
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return GestureDetector(
+            onTap: () {
+              // Navigate to detail menu when item is tapped
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailMenuScreen(menuItem: item),
                 ),
-                elevation: 8,
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.white, Colors.grey[200]!],
-                    ),
+              );
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              elevation: 8,
+              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.white, Colors.grey[200]!],
                   ),
-                  padding: const EdgeInsets.all(12.0),
-                  height: 170, // Atur tinggi item sesuai kebutuhan
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Gambar item
-                      item.containsKey('imageURL')
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.network(
-                                item['imageURL'],
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : const Icon(Icons.image, size: 110, color: Colors.grey),
-                      const SizedBox(width: 30),
-
-                      // Bagian deskripsi dan rating
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              item['name'],
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
+                ),
+                padding: const EdgeInsets.all(12.0),
+                height: 170, // Adjust height as needed
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Image section
+                    item.containsKey('imageURL')
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(
+                              item['imageURL'],
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
                             ),
-                            const SizedBox(height: 12),
-                            if (item.containsKey('rating'))
-                              Row(
-                                children: [
-                                  const Icon(Icons.star, color: Colors.orange, size: 16),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    '${item['rating']} (${item['reviews']}+)',
-                                    style: const TextStyle(fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Rp ${currencyFormat.format(item['price'])}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          )
+                        : const Icon(Icons.image, size: 110, color: Colors.grey),
+                    const SizedBox(width: 30),
 
-                      // Tombol tambah
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min, // Gunakan mainAxisSize.min di sini
+                    // Description and rating section
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Provider.of<CartModel>(context, listen: false)
-                                  .addItem(item); 
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFFF8811),
-                              foregroundColor: Colors.black,
-                              elevation: 5,
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
+                          Text(
+                            item['name'],
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
                             ),
-                            child: const Text('Tambah'),
+                          ),
+                          const SizedBox(height: 12),
+                          if (item.containsKey('rating'))
+                            Row(
+                              children: [
+                                const Icon(Icons.star, color: Colors.orange, size: 16),
+                                const SizedBox(width: 6),
+                                Text(
+                                  '${item['rating']} (${item['reviews']}+)',
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          const SizedBox(height: 8),
+                          // Row to align price and button
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Rp ${currencyFormat.format(item['price'])}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              // Add button next to price
+                              ElevatedButton(
+                                onPressed: () {
+                                  Provider.of<CartModel>(context, listen: false)
+                                      .addItem(item);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFFFF8811),
+                                  foregroundColor: Colors.black,
+                                  elevation: 5,
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: const Text('Tambah'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          },
-        ),
-      ],
-    );
-  }
+            ),
+          );
+        },
+      ),
+    ],
+  );
+}
+
 }

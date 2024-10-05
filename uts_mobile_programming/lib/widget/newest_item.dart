@@ -34,7 +34,7 @@ class NewestItemWidget extends StatelessWidget {
                 },
                 child: Container(
                   width: 170,
-                  height: 320,
+                  height: 300,
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFF8F0),
                     borderRadius: BorderRadius.circular(5),
@@ -102,23 +102,26 @@ class NewestItemWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8), // Jarak antara rating dan tombol
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Provider.of<CartModel>(context, listen: false)
-                                .addItem(item);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFF8811),
-                            foregroundColor: Colors.black,
-                            elevation: 5,
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                      Align(
+                        alignment: Alignment.centerRight, // Align button to the right
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Provider.of<CartModel>(context, listen: false)
+                                  .addItem(item);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF8811),
+                              foregroundColor: Colors.black,
+                              elevation: 5,
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
+                            child: const Text('Tambah'),
                           ),
-                          child: const Text('Tambah'),
                         ),
                       ),
                     ],

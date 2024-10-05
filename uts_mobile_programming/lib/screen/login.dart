@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uts_mobile_programming/loginComponents/my_textfield.dart';
 import 'package:uts_mobile_programming/models/api_response.dart';
 import 'package:uts_mobile_programming/models/user.dart';
 import 'package:uts_mobile_programming/screen/home.dart';

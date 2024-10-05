@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:uts_mobile_programming/screen/review_order_screen.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:uts_mobile_programming/models/order.dart';
 
 class Order {
   List<OrderItem> items;

@@ -36,7 +36,7 @@ class PopularItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: Container(
                     width: double.infinity,
-                    height: 225,
+                    height:180,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFF8F0),
                       borderRadius: BorderRadius.circular(5),
@@ -58,8 +58,8 @@ class PopularItem extends StatelessWidget {
                           ),
                           child: Image.network(
                             item['imageURL'],
-                            height: 225,
-                            width: 200,
+                            height: 180,
+                            width: 180,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -103,8 +103,8 @@ class PopularItem extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 8), // Jarak antara rating dan tombol
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                Align(
+                                  alignment: Alignment.centerRight, // Align button to the right
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Provider.of<CartModel>(context, listen: false)

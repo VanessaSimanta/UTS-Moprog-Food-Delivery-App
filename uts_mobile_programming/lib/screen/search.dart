@@ -251,27 +251,30 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ],
                         ),
-                          const SizedBox(height: 8), // Jarak antara rating dan tombol
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Provider.of<CartModel>(context, listen: false)
+                        const SizedBox(height: 8), // Space between rating and button
+
+                        const Spacer(), // Pushes the button to the bottom
+                        // Add button on the right
+                        Align(
+                          alignment: Alignment.bottomRight, // Align the button to the right
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Provider.of<CartModel>(context, listen: false)
                                   .addItem(item.toMap());
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFFF8811),
-                                foregroundColor: Colors.black,
-                                elevation: 5,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 12),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF8811),
+                              foregroundColor: Colors.black,
+                              elevation: 5,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              child: const Text('Tambah'),
                             ),
+                            child: const Text('Tambah'),
                           ),
+                        ),
                       ],
                     ),
                   ),

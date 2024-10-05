@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uts_mobile_programming/screen/tracking.dart' as tracking;
-import 'package:uts_mobile_programming/models/order.dart';
 
 class ReviewOrderScreen extends StatelessWidget {
   final tracking.Order order; // Data pesanan
