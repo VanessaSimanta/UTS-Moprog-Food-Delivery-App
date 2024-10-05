@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/screen/tracking.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class PaymentPage extends StatefulWidget {
   final List<Map<String, dynamic>> cartItems;
@@ -30,9 +31,15 @@ class _PaymentPageState extends State<PaymentPage> {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Payment Page'),
-        backgroundColor: Colors.orange, // Set a vibrant app bar color
+      appBar: const AppBarWidget(
+        title: Text(
+          "Payment Page",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

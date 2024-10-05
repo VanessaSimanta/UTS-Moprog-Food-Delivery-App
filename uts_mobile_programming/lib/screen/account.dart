@@ -191,6 +191,7 @@ class _AccountState extends State<Account> {
                         onPressed: _logout,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 255, 231, 197),
+                          elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -211,6 +212,7 @@ class _AccountState extends State<Account> {
                         onPressed: _deleteAccount,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 255, 231, 197),
+                          elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),

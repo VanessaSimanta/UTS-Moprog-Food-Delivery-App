@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class TrackingProgressScreen extends StatefulWidget {
   const TrackingProgressScreen({super.key});
@@ -52,9 +53,15 @@ class _TrackingProgressScreenState extends State<TrackingProgressScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Track Your Order'),
-        backgroundColor: Colors.orange,
+      appBar: const AppBarWidget(
+        title: Text(
+          "Track Your Order",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
       ),
       body: SingleChildScrollView(
         child: Padding(

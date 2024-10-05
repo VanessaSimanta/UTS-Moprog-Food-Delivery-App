@@ -115,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        showBackArrow: false,
+        showBackArrow: true,
         actions: [],
       ),
       body: Column(
@@ -214,7 +214,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   ),
                                   const SizedBox(height: 8.0),
                                   Text(
-                                    'Rp. ${currencyFormat.format(item.price)}',
+                                    'Rp ${currencyFormat.format(item.price)}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromARGB(255, 182, 111, 40),
@@ -251,6 +251,15 @@ class _SearchScreenState extends State<SearchScreen> {
                                 });
                                 _showCart(context);
                               },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFFF8811),
+                                foregroundColor: Colors.black,
+                                elevation: 5,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
                               child: const Text('Tambah'),
                             ),
                           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:uts_mobile_programming/screen/rating.dart';
 import 'package:uts_mobile_programming/screen/review.dart';
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class DetailMenuScreen extends StatelessWidget {
   final Map<String, dynamic> menuItem;
@@ -9,9 +11,16 @@ class DetailMenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
     return Scaffold(
-      appBar: AppBar(
-        title: Text(menuItem['name']),
+       appBar: AppBarWidget(
+       title: Text(menuItem['name'],
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,7 +39,7 @@ class DetailMenuScreen extends StatelessWidget {
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Text('Rp ${menuItem['price']}',
+            Text('Rp ${currencyFormat.format(menuItem['price'])}',
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Rating(

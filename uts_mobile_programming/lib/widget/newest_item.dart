@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 import 'package:intl/intl.dart';
 
 class NewestItemWidget extends StatelessWidget {
@@ -19,6 +20,16 @@ class NewestItemWidget extends StatelessWidget {
           children: items.map((item) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
+              child: GestureDetector(
+                onTap: () {
+                  // Navigasi ke halaman detail ketika gambar ditekan
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailMenuScreen(menuItem: item),
+                    ),
+                  );
+                },
               child: Container(
                 width: 170,
                 height: 245,
@@ -91,6 +102,7 @@ class NewestItemWidget extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
             );
           }).toList(),
         ),

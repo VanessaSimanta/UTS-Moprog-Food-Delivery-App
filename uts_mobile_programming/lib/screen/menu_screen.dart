@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/screen/payment.dart';
 import 'package:uts_mobile_programming/screen/item_menu.dart';
+import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +13,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   // List untuk menyimpan item yang ditambahkan ke keranjang
   List<Map<String, dynamic>> cartItems = [];
-  //format untuk harga
+  // Format untuk harga
   final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
 
   @override
@@ -63,101 +64,128 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ),
         ListView.builder(
-          shrinkWrap:
-              true, // Menggunakan shrinkWrap untuk membatasi ukuran ListView
-          physics:
-              const NeverScrollableScrollPhysics(), // Memastikan ListView tidak bisa di-scroll
+          shrinkWrap: true, // Menggunakan shrinkWrap untuk membatasi ukuran ListView
+          physics: const NeverScrollableScrollPhysics(), // Memastikan ListView tidak bisa di-scroll
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              elevation: 8,
-              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: Container(
-                decoration: BoxDecoration(
+            return GestureDetector(
+              onTap: () {
+                // Navigasi ke detail menu saat item di-tap
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailMenuScreen(menuItem: item),
+                  ),
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 8,
+                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
-                  colors: [Colors.white, Colors.grey[200]!],
-                )),
-                padding: const EdgeInsets.all(12.0),
-                height: 150,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    item.containsKey('imageURL')
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.network(
-                              item['imageURL'],
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
+                      colors: [Colors.white, Colors.grey[200]!],
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(12.0),
+                  height: 150,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Gambar item
+                      item.containsKey('imageURL')
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.network(
+                                item['imageURL'],
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : const Icon(Icons.image, size: 110, color: Colors.grey),
+                      const SizedBox(width: 30),
+
+                      // Bagian deskripsi dan rating
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item['name'],
+                              style: const TextStyle(
+                                fontSize: 20, // Increased font size
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
                             ),
-                          )
-                        : const Icon(Icons.image,
-                            size: 110, color: Colors.grey),
-                    const SizedBox(width: 30),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                            const SizedBox(height: 12),
+                            if (item.containsKey('rating'))
+                              Row(
+                                children: [
+                                  const Icon(Icons.star, color: Colors.orange, size: 16),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    '${item['rating']} (${item['reviews']}+)',
+                                    style: const TextStyle(fontSize: 14), // Adjust font size
+                                  ),
+                                ],
+                              ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Rp ${currencyFormat.format(item['price'])}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Rating dan tombol tambah
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            item['name'],
-                            style: const TextStyle(
-                              fontSize: 20, // Increased font size
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                // Check if the item is already in the cart
+                                final existingItemIndex = cartItems.indexWhere(
+                                    (cartItem) => cartItem['name'] == item['name']);
+                                if (existingItemIndex != -1) {
+                                  // If it exists, increment the quantity
+                                  cartItems[existingItemIndex]['quantity']++;
+                                } else {
+                                  // If it doesn't exist, add it with quantity 1
+                                  cartItems.add({
+                                    ...item,
+                                    'quantity': 1,
+                                  }); // Add a new item with quantity
+                                }
+                              });
+                              _showCart(context); // Show the cart after adding an item
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF8811),
+                              foregroundColor: Colors.black,
+                              elevation: 5,
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 12),
-                          if (item.containsKey('rating'))
-                            Row(
-                              children: [
-                                const Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                const SizedBox(width: 6),
-                                Text(
-                                  '${item['rating']} (${item['reviews']}+)',
-                                  style: const TextStyle(
-                                      fontSize: 14), // Adjust font size
-                                ),
-                              ],
-                            ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Rp. ${currencyFormat.format(item['price'])}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                            child: const Text('Tambah'),
                           ),
                         ],
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          // Check if the item is already in the cart
-                          final existingItemIndex = cartItems.indexWhere(
-                              (cartItem) => cartItem['name'] == item['name']);
-                          if (existingItemIndex != -1) {
-                            // If it exists, increment the quantity
-                            cartItems[existingItemIndex]['quantity']++;
-                          } else {
-                            // If it doesn't exist, add it with quantity 1
-                            cartItems.add({
-                              ...item,
-                              'quantity': 1
-                            }); // Add a new item with quantity
-                          }
-                        });
-                        _showCart(context);
-                      },
-                      child: const Text('Tambah'),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
@@ -165,23 +193,6 @@ class _MenuScreenState extends State<MenuScreen> {
         ),
       ],
     );
-  }
-
-//untuk mengembalikan menu dengan rating tertinggi
-  List<Map<String, dynamic>> getPopularItems() {
-    // Gabungkan semua kategori menjadi satu list
-    List<Map<String, dynamic>> allItems = [
-      ...ayamItems,
-      ...seafoodItems,
-      ...healthItems,
-      ...minumanItems,
-    ];
-
-    // Urutkan berdasarkan rating tertinggi
-    allItems.sort((a, b) => b['rating'].compareTo(a['rating']));
-
-    // Ambil hanya item dengan rating di atas 4.5 (misalnya)
-    return allItems.where((item) => item['rating'] >= 4.5).toList();
   }
 
   // Fungsi untuk menampilkan Cart dalam modal bottom sheet
@@ -287,15 +298,13 @@ class _MenuScreenState extends State<MenuScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              PaymentPage(cartItems: cartItems),
+                          builder: (context) => PaymentPage(cartItems: cartItems),
                         ),
                       );
                     },
                     child: const Text('Lanjutkan ke Pembayaran'),
                     style: ElevatedButton.styleFrom(
-                      minimumSize:
-                          const Size(double.infinity, 40), // Full width button
+                      minimumSize: const Size(double.infinity, 40), // Full width button
                     ),
                   ),
                 ),

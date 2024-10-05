@@ -133,8 +133,14 @@ class _PromotionCardState extends State<PromotionCard> {
                     ElevatedButton(
                       onPressed: widget.onClaim,
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                      ),
+                              backgroundColor: const Color(0xFFFF8811),
+                              foregroundColor: Colors.black,
+                              elevation: 5,
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
                       child: const Text('Claim Now'),
                     ),
                     Row(
