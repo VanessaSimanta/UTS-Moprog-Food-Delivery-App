@@ -80,7 +80,7 @@ class PopularItem extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 8.0),
                                 Text(
-                                  'Rp. ${currencyFormat.format(item['price'])}',
+                                  'Rp ${currencyFormat.format(item['price'])}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                   ),

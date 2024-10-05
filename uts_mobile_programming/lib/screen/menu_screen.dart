@@ -105,7 +105,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             child: Image.network(
                               item['imageURL'],
                               width: 120,
-                              height: 120,
+                              height: 150,
                               fit: BoxFit.cover,
                             ),
                           )

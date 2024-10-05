@@ -42,6 +42,10 @@ class DetailMenuScreen extends StatelessWidget {
             Text('Rp ${currencyFormat.format(menuItem['price'])}',
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
+            Text(
+              menuItem['description'],
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
+            const SizedBox(height: 8),
             Rating(
                 rating: menuItem['rating'], reviewCount: menuItem['reviews']),
             const SizedBox(height: 16),
