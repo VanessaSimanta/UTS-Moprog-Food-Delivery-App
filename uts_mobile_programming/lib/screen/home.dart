@@ -104,10 +104,11 @@ class HomePageContent extends StatelessWidget {
         showBackArrow: false,
         actions: [
           Image.asset(
-                'assets/logo.png',
-                width: 100, // Sesuaikan ukuran sesuai kebutuhan
-                height: 100,
-          ),
+              'assets/logo.png',
+              width: 50, // Sesuaikan ukuran sesuai kebutuhan
+              height: 50,
+            ),
+            const SizedBox(width: 200),
           IconButton(
             icon: const Icon(
               Icons.shopping_cart,
