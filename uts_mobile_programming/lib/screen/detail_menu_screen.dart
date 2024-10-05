@@ -13,8 +13,9 @@ class DetailMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final NumberFormat currencyFormat = NumberFormat("#,##0", "id_ID");
     return Scaffold(
-       appBar: AppBarWidget(
-       title: Text(menuItem['name'],
+      appBar: AppBarWidget(
+        title: Text(
+          menuItem['name'],
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -22,7 +23,7 @@ class DetailMenuScreen extends StatelessWidget {
         showBackArrow: true,
         actions: [],
       ),
-      body: Padding(
+      body: SingleChildScrollView(  
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,8 +43,12 @@ class DetailMenuScreen extends StatelessWidget {
             Text('Rp ${currencyFormat.format(menuItem['price'])}',
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            Rating(
-                rating: menuItem['rating'], reviewCount: menuItem['reviews']),
+            Text(
+              menuItem['description'],
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(height: 8),
+            Rating(rating: menuItem['rating'], reviewCount: menuItem['reviews']),
             const SizedBox(height: 16),
             const Divider(),
             const Text(
@@ -51,7 +56,8 @@ class DetailMenuScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Expanded(
+            SizedBox(  // Ganti Expanded dengan SizedBox untuk menentukan tinggi yang fix
+              height: 200,  // Sesuaikan tinggi ini
               child: ReviewList(
                 reviews: [
                   Review(
