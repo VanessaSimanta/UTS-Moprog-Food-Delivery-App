@@ -36,7 +36,7 @@ class PopularItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: Container(
                     width: double.infinity,
-                    height:180,
+                    height:183,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFF8F0),
                       borderRadius: BorderRadius.circular(5),
