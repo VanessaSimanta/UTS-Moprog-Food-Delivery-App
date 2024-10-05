@@ -318,8 +318,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: const Text('Settings'),
+     appBar: const AppBarWidget(
+        title: Text(
+          "Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
       ),
       body: ListView(
         children: [
@@ -416,7 +423,16 @@ class AccountSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Account Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Account Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Account Settings Content')),
     );
   }
@@ -428,7 +444,16 @@ class NotificationSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notification Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Notification Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Notification Settings Content')),
     );
   }
@@ -440,7 +465,16 @@ class PrivacySettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Privacy Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Privacy Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Privacy Settings Content')),
     );
   }
@@ -452,7 +486,16 @@ class ThemeSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Theme Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Theme Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Theme Settings Content')),
     );
   }
@@ -464,7 +507,16 @@ class LanguageSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Language Settings')),
+     appBar: const AppBarWidget(
+        title: Text(
+          "Language Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Language Settings Content')),
     );
   }
@@ -476,7 +528,16 @@ class StorageSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Storage Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Storage Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Storage Settings Content')),
     );
   }
@@ -488,7 +549,16 @@ class SecuritySettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Security Settings')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Security Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Security Settings Content')),
     );
   }
@@ -500,7 +570,16 @@ class HelpSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Help & Support')),
+      appBar: const AppBarWidget(
+        title: Text(
+          "Help & Support Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: true,
+        actions: [],
+      ),
       body: const Center(child: Text('Help & Support Content')),
     );
   }

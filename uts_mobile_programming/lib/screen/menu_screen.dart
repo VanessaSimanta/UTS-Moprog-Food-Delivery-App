@@ -92,7 +92,8 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                   ),
                   padding: const EdgeInsets.all(12.0),
-                  height: 150,
+                  // Batasi tinggi untuk menghindari overflow
+                  height: 170, // Atau bisa disesuaikan dengan ukuran yang diinginkan
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -114,11 +115,12 @@ class _MenuScreenState extends State<MenuScreen> {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start, // Atur ini sesuai kebutuhan
                           children: [
                             Text(
                               item['name'],
                               style: const TextStyle(
-                                fontSize: 20, // Increased font size
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
@@ -131,7 +133,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                   const SizedBox(width: 6),
                                   Text(
                                     '${item['rating']} (${item['reviews']}+)',
-                                    style: const TextStyle(fontSize: 14), // Adjust font size
+                                    style: const TextStyle(fontSize: 14),
                                   ),
                                 ],
                               ),
@@ -147,29 +149,26 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                       ),
 
-                      // Rating dan tombol tambah
+                      // Tombol tambah
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min, // Gunakan mainAxisSize.min di sini
                         children: [
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                // Check if the item is already in the cart
                                 final existingItemIndex = cartItems.indexWhere(
                                     (cartItem) => cartItem['name'] == item['name']);
                                 if (existingItemIndex != -1) {
-                                  // If it exists, increment the quantity
                                   cartItems[existingItemIndex]['quantity']++;
                                 } else {
-                                  // If it doesn't exist, add it with quantity 1
                                   cartItems.add({
                                     ...item,
                                     'quantity': 1,
-                                  }); // Add a new item with quantity
+                                  });
                                 }
                               });
-                              _showCart(context); // Show the cart after adding an item
+                              _showCart(context);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFFF8811),
@@ -189,8 +188,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
               ),
             );
-          },
-        ),
+          }
+        )
       ],
     );
   }
@@ -199,6 +198,7 @@ class _MenuScreenState extends State<MenuScreen> {
   void _showCart(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
           padding: const EdgeInsets.all(16.0),
