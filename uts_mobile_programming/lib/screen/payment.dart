@@ -143,7 +143,18 @@ class _PaymentPageState extends State<PaymentPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TrackingProgressScreen()),
+                            builder: (context) => TrackingProgressScreen(
+                              order: Order(
+                                items: widget.cartItems.map((item) {
+                                  return OrderItem(
+                                    name: item['name'],
+                                    rating: null,
+                                    review: null,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
                         );
                       });
                     },

@@ -21,7 +21,9 @@ class OrderItem {
 }
 
 class TrackingProgressScreen extends StatefulWidget {
-  const TrackingProgressScreen({super.key});
+  final Order order;
+
+  const TrackingProgressScreen({super.key, required this.order});
 
   @override
   _TrackingProgressScreenState createState() => _TrackingProgressScreenState();
@@ -47,13 +49,6 @@ class _TrackingProgressScreenState extends State<TrackingProgressScreen> {
   ];
 
   bool showFinishButton = false;
-
-  Order order = Order(
-    items: [
-      OrderItem(name: "Nasi Goreng", rating: null, review: null),
-      OrderItem(name: "Ayam Bakar", rating: null, review: null),
-    ],
-  );
 
   // Randomize order status but avoid picking the same step
   void randomizeStep() {
@@ -209,8 +204,8 @@ class _TrackingProgressScreenState extends State<TrackingProgressScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ReviewOrderScreen(
-                                    order: order), // Kirim data pesanan
+                                builder: (context) =>
+                                    ReviewOrderScreen(order: widget.order),
                               ),
                             );
                           }

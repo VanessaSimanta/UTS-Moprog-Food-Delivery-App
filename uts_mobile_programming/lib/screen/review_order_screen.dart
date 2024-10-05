@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:uts_mobile_programming/screen/tracking.dart';
+import 'package:uts_mobile_programming/screen/tracking.dart' as tracking;
 import 'package:uts_mobile_programming/models/order.dart';
 
 class ReviewOrderScreen extends StatelessWidget {
-  final order; // Data pesanan
+  final tracking.Order order; // Data pesanan
 
   const ReviewOrderScreen({Key? key, required this.order}) : super(key: key);
 
@@ -54,13 +54,25 @@ class ReviewOrderScreen extends StatelessWidget {
         child: Icon(Icons.check),
         onPressed: () {
           // Simpan rating dan review ke database atau backend
-          saveReview(order);
+          saveReview(order, context);
         },
       ),
     );
   }
 
-  void saveReview(order) {
-    // Implementasi penyimpanan ke server
+  void saveReview(tracking.Order order, BuildContext context) {
+    // Implementasi penyimpanan ke server atau local storage
+    // Tampilkan pesan sukses
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content:
+            Text("Your ratings & reviews have been submitted successfully!"),
+      ),
+    );
+
+    // Kembali ke halaman utama
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.popUntil(context, (route) => route.isFirst);
+    });
   }
 }
