@@ -67,14 +67,13 @@ class _MenuScreenState extends State<MenuScreen> {
         ),
       ),
       ListView.builder(
-        shrinkWrap: true, // Use shrinkWrap to limit ListView size
-        physics: const NeverScrollableScrollPhysics(), // Prevent scrolling
+        shrinkWrap: true, 
+        physics: const NeverScrollableScrollPhysics(), 
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
           return GestureDetector(
             onTap: () {
-              // Navigate to detail menu when item is tapped
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -95,7 +94,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 ),
                 padding: const EdgeInsets.all(12.0),
-                height: 170, // Adjust height as needed
+                height: 176, 
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -105,8 +104,8 @@ class _MenuScreenState extends State<MenuScreen> {
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image.network(
                               item['imageURL'],
-                              width: 100,
-                              height: 100,
+                              width: 120,
+                              height: 120,
                               fit: BoxFit.cover,
                             ),
                           )
