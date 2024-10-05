@@ -103,6 +103,11 @@ class HomePageContent extends StatelessWidget {
       appBar: AppBarWidget(
         showBackArrow: false,
         actions: [
+          Image.asset(
+                'assets/logo.png',
+                width: 100, // Sesuaikan ukuran sesuai kebutuhan
+                height: 100,
+          ),
           IconButton(
             icon: const Icon(
               Icons.shopping_cart,
@@ -142,16 +147,6 @@ class HomePageContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Logo
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/logo.png',
-                width: 100, // Sesuaikan ukuran sesuai kebutuhan
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-            ),
             // CAROUSEL
             CarouselSlider(
               items: [

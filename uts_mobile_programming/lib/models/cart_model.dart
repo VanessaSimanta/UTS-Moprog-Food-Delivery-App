@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Import intl package
 import 'package:uts_mobile_programming/screen/payment.dart';
+import 'package:uts_mobile_programming/models/addson_modal.dart';
 
 class CartModel with ChangeNotifier {
   final List<Map<String, dynamic>> _items = [];
@@ -14,6 +15,7 @@ class CartModel with ChangeNotifier {
     decimalDigits: 0,
   );
 
+  // Fungsi untuk menambah item ke dalam keranjang
   void addItem(Map<String, dynamic> item) {
     final existingItemIndex =
         _items.indexWhere((cartItem) => cartItem['name'] == item['name']);
@@ -57,14 +59,14 @@ class CartModel with ChangeNotifier {
     return total;
   }
 
-  // Fungsi untuk menampilkan Cart dalam modal bottom sheet
+  // Fungsi untuk menampilkan keranjang dalam modal bottom sheet
   void showCart(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return StatefulBuilder( // Gunakan StatefulBuilder
-          builder: (context, setState) {  // Tambahkan setState di sini
+        return StatefulBuilder(
+          builder: (context, setState) {
             return Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -96,6 +98,7 @@ class CartModel with ChangeNotifier {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // Informasi produk
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -116,6 +119,7 @@ class CartModel with ChangeNotifier {
                                   ),
                                 ],
                               ),
+                              // Pengaturan kuantitas dan tombol
                               Row(
                                 children: [
                                   IconButton(
@@ -134,10 +138,33 @@ class CartModel with ChangeNotifier {
                                     icon: const Icon(Icons.add_circle_outline),
                                     onPressed: () {
                                       setState(() {
-                                        item['quantity']++;
+                                        updateItemQuantity(item, item['quantity'] + 1);
                                       });
-                                      Navigator.pop(context);
-                                      showCart(context);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.edit),
+                                    onPressed: () {
+                                      // Display the add-ons modal
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AddOnsModal(
+                                            item: item, // Passing the current item
+                                            onAddOnsSelected: (selectedAddOns) {
+                                              setState(() {
+                                                // Update item with selected add-ons
+                                                item['addOns'] = selectedAddOns;
+                                                final selectedSize = selectedAddOns.firstWhere(
+                                                  (addOn) => addOn['isSelected'], 
+                                                  orElse: () => {'size': 'Default', 'price': 0, 'isSelected': false} // Returning default value
+                                                );
+                                                item['price'] += selectedSize['price'];
+                                              });
+                                            },
+                                          );
+                                        },
+                                      );
                                     },
                                   ),
                                 ],
@@ -152,7 +179,7 @@ class CartModel with ChangeNotifier {
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Logic for proceeding to payment
+                          // Navigasi ke halaman pembayaran
                           Navigator.pop(context);
                           Navigator.push(
                             context,
@@ -163,7 +190,7 @@ class CartModel with ChangeNotifier {
                         },
                         child: const Text('Lanjutkan ke Pembayaran'),
                         style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 40), // Full width button
+                          minimumSize: const Size(double.infinity, 40), // Tombol lebar penuh
                         ),
                       ),
                     ),
@@ -172,7 +199,7 @@ class CartModel with ChangeNotifier {
             );
           },
         );
-      } 
-    ); 
+      },
+    );
   }
 }
