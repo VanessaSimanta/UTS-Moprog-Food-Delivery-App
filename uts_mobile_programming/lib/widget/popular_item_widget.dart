@@ -74,7 +74,7 @@ class PopularItemWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          'Rp. ${currencyFormat.format(item['price'])}',
+                          'Rp ${currencyFormat.format(item['price'])}',
                           style: const TextStyle(
                             fontSize: 16,
                           ),
