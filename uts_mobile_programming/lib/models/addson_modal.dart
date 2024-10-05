@@ -75,7 +75,9 @@ class _AddOnsModalState extends State<AddOnsModal> {
               child: const Text('Pilih Ukuran'),
               style: ElevatedButton.styleFrom(
                 minimumSize:
-                    const Size(double.infinity, 40), // Full width button
+                    const Size(double.infinity, 40),
+                    backgroundColor: const Color(0xFFFF8811),
+                    foregroundColor: Colors.black, // Full width button
               ),
             ),
           ],

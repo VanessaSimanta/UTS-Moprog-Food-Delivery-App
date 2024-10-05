@@ -190,7 +190,9 @@ class CartModel with ChangeNotifier {
                         },
                         child: const Text('Lanjutkan ke Pembayaran'),
                         style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 40), // Tombol lebar penuh
+                          minimumSize: const Size(double.infinity, 40), 
+                          backgroundColor: const Color(0xFFFF8811),
+                          foregroundColor: Colors.black,// Tombol lebar penuh
                         ),
                       ),
                     ),
