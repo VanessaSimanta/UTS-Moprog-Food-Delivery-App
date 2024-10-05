@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_programming/screen/payment.dart';
 import 'package:uts_mobile_programming/screen/item_menu.dart';
 import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:uts_mobile_programming/models/cart_model.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -29,9 +30,11 @@ class _MenuScreenState extends State<MenuScreen> {
         showBackArrow: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart,
+            color: Color.fromARGB(255, 0, 0, 0),),
             onPressed: () {
-              _showCart(context); // Tampilkan keranjang jika icon cart di tap
+              Provider.of<CartModel>(context, listen: false)
+                                  .showCart(context); // Tampilkan keranjang jika icon cart di tap
             },
           ),
         ],
@@ -92,8 +95,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                   ),
                   padding: const EdgeInsets.all(12.0),
-                  // Batasi tinggi untuk menghindari overflow
-                  height: 170, // Atau bisa disesuaikan dengan ukuran yang diinginkan
+                  height: 170, // Atur tinggi item sesuai kebutuhan
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -115,7 +117,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start, // Atur ini sesuai kebutuhan
                           children: [
                             Text(
                               item['name'],
@@ -156,19 +157,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                final existingItemIndex = cartItems.indexWhere(
-                                    (cartItem) => cartItem['name'] == item['name']);
-                                if (existingItemIndex != -1) {
-                                  cartItems[existingItemIndex]['quantity']++;
-                                } else {
-                                  cartItems.add({
-                                    ...item,
-                                    'quantity': 1,
-                                  });
-                                }
-                              });
-                              _showCart(context);
+                              Provider.of<CartModel>(context, listen: false)
+                                  .addItem(item); 
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFFF8811),
@@ -188,130 +178,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
               ),
             );
-          }
-        )
+          },
+        ),
       ],
-    );
-  }
-
-  // Fungsi untuk menampilkan Cart dalam modal bottom sheet
-  void _showCart(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Keranjang Belanja',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const Divider(),
-              if (cartItems.isEmpty)
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Keranjang Anda kosong',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                )
-              else
-                ...cartItems.map((item) {
-                  return Card(
-                    elevation: 4,
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item['name'],
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Rp ${currencyFormat.format(item['price'])}',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.remove_circle_outline),
-                                onPressed: () {
-                                  setState(() {
-                                    if (item['quantity'] > 1) {
-                                      item['quantity']--;
-                                    } else {
-                                      cartItems.remove(item);
-                                    }
-                                  });
-                                  Navigator.pop(context);
-                                  _showCart(context);
-                                },
-                              ),
-                              Text(
-                                '${item['quantity']}',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.add_circle_outline),
-                                onPressed: () {
-                                  setState(() {
-                                    item['quantity']++;
-                                  });
-                                  Navigator.pop(context);
-                                  _showCart(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              if (cartItems.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Logic for proceeding to payment
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PaymentPage(cartItems: cartItems),
-                        ),
-                      );
-                    },
-                    child: const Text('Lanjutkan ke Pembayaran'),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 40), // Full width button
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
-import 'package:uts_mobile_programming/screen/payment.dart';
+import 'package:provider/provider.dart';
+import 'package:uts_mobile_programming/models/cart_model.dart';
 
 class MenuItem {
   final String name;
@@ -17,7 +18,18 @@ class MenuItem {
     required this.imageUrl,
     required this.price,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'description': description,
+      'rating': rating,
+      'imageUrl': imageUrl,
+      'price': price,
+    };
+  }
 }
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -239,17 +251,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 0.0),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 2.0),
+                          const SizedBox(height: 8), // Jarak antara rating dan tombol
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                setState(() {
-                                  cartItems.add(item);
-                                });
-                                _showCart(context);
+                                Provider.of<CartModel>(context, listen: false)
+                                  .addItem(item.toMap());
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFFF8811),
@@ -263,7 +271,6 @@ class _SearchScreenState extends State<SearchScreen> {
                               child: const Text('Tambah'),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -273,86 +280,6 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  void _showCart(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Keranjang Belanja',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const Divider(),
-              if (cartItems.isEmpty)
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Keranjang Anda kosong',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                )
-              else
-                ...cartItems.map((item) {
-                  return ListTile(
-                    title: Text(item.name),
-                    subtitle: Text('Rp ${currencyFormat.format(item.price)}'),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.remove_circle_outline),
-                      onPressed: () {
-                        setState(() {
-                          cartItems.remove(item); // Hapus item dari keranjang
-                        });
-                        Navigator.pop(context); // Tutup modal dan buka lagi
-                        _showCart(
-                            context); // Tampilkan ulang cart dengan item terbaru
-                      },
-                    ),
-                  );
-                }).toList(),
-              if (cartItems.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // Logic untuk melanjutkan pembayaran
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PaymentPage(
-                              cartItems: cartItems.map((item) {
-                            return {
-                              'name': item.name,
-                              'price': item.price,
-                              'rating': item.rating,
-                              'description': item.description,
-                              'imageUrl': item.imageUrl,
-                            };
-                          }).toList()),
-                        ),
-                      );
-                    },
-                    child: const Text('Lanjutkan ke Pembayaran'),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize:
-                          const Size(double.infinity, 40), // Full width button
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

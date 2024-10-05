@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:uts_mobile_programming/models/cart_model.dart';
 
 class PopularItem extends StatelessWidget {
   final List<Map<String, dynamic>> popularItems;
@@ -52,13 +54,13 @@ class PopularItem extends StatelessWidget {
                         ClipRRect(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
-                            bottomLeft: Radius.circular(5), 
+                            bottomLeft: Radius.circular(5),
                           ),
                           child: Image.network(
                             item['imageURL'],
-                            height: 225, 
-                            width: 200, 
-                            fit: BoxFit.cover, 
+                            height: 225,
+                            width: 200,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         Expanded(
@@ -76,18 +78,18 @@ class PopularItem extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                const SizedBox(height: 8.0), 
+                                const SizedBox(height: 8.0),
                                 Text(
                                   'Rp. ${currencyFormat.format(item['price'])}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                   ),
                                 ),
-                                const SizedBox(height: 8.0), 
+                                const SizedBox(height: 8.0),
                                 Row(
-                                  children: [// Space between icon and text
+                                  children: [
                                     Text(
-                                      '${item['rating']}', 
+                                      '${item['rating']}',
                                       style: const TextStyle(
                                         fontSize: 18,
                                       ),
@@ -95,10 +97,30 @@ class PopularItem extends StatelessWidget {
                                     const SizedBox(width: 4.0),
                                     const Icon(
                                       Icons.star,
-                                      color: Colors.amber, // Change color if needed
-                                      size: 20, // Adjust size if needed
-                                    ), 
+                                      color: Colors.amber,
+                                      size: 20,
+                                    ),
                                   ],
+                                ),
+                                const SizedBox(height: 8), // Jarak antara rating dan tombol
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Provider.of<CartModel>(context, listen: false)
+                                          .addItem(item);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFFF8811),
+                                      foregroundColor: Colors.black,
+                                      elevation: 5,
+                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    child: const Text('Tambah'),
+                                  ),
                                 ),
                               ],
                             ),
