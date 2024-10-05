@@ -255,7 +255,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                 backgroundColor: const Color(0xFFFF8811),
                                 foregroundColor: Colors.black,
                                 elevation: 5,
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
