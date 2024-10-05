@@ -55,6 +55,7 @@ class _PaymentPageState extends State<PaymentPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
+              color: Colors.white,
               elevation: 4,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
