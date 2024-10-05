@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uts_mobile_programming/screen/tracking.dart' as tracking;
+import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 
 class ReviewOrderScreen extends StatelessWidget {
   final tracking.Order order; // Data pesanan
@@ -10,8 +11,15 @@ class ReviewOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Review Order'),
+      appBar: const AppBarWidget(
+        title: Text(
+          "How is the menu?",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        showBackArrow: false,
+        actions: [],
       ),
       body: ListView.builder(
         itemCount: order.items.length, // Berdasarkan jumlah item yang dipesan
