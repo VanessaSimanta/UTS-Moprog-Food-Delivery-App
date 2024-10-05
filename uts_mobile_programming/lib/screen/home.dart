@@ -50,7 +50,6 @@ class _HomeState extends State<Home> {
 
 class HomePageContent extends StatelessWidget {
   const HomePageContent({super.key});
-  
 
   //Function untuk sort item popular based on ratings
   List<Map<String, dynamic>> getPopularItems() {
@@ -105,11 +104,12 @@ class HomePageContent extends StatelessWidget {
         showBackArrow: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_cart,
-            color: Color.fromARGB(255, 0, 0, 0),),
+            icon: const Icon(
+              Icons.shopping_cart,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
             onPressed: () {
-              Provider.of<CartModel>(context, listen: false)
-                                  .showCart(context); 
+              Provider.of<CartModel>(context, listen: false).showCart(context);
             },
           ),
           IconButton(
@@ -139,10 +139,20 @@ class HomePageContent extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        //CAROUSEL
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            // Logo
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/logo.png',
+                width: 100, // Sesuaikan ukuran sesuai kebutuhan
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            // CAROUSEL
             CarouselSlider(
               items: [
                 'assets/pict1.jpeg',
@@ -261,7 +271,7 @@ class HomePageContent extends StatelessWidget {
                 ),
               ),
             ),
-            //POPULAR MENU
+            // POPULAR MENU
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 10),
               child: Row(
@@ -329,7 +339,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: const AppBarWidget(
+      appBar: const AppBarWidget(
         title: Text(
           "Settings",
           style: TextStyle(
@@ -518,7 +528,7 @@ class LanguageSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: const AppBarWidget(
+      appBar: const AppBarWidget(
         title: Text(
           "Language Settings",
           style: TextStyle(
