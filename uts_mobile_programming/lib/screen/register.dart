@@ -71,8 +71,8 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: const Text(
+      appBar: const AppBarWidget(
+        title: Text(
           "Profile",
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _RegisterState extends State<Register> {
                     const SizedBox(height: 20),
                     Card(
                       elevation: 6,
-                      color: Color.fromARGB(255, 252, 238, 220),
+                      color: const Color.fromARGB(255, 252, 238, 220),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -247,11 +247,11 @@ class _RegisterState extends State<Register> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                Expanded(
+                                const Expanded(
                                   child: Text.rich(
                                     TextSpan(
                                       children: [
-                                        const TextSpan(text: 'I agree to the '),
+                                        TextSpan(text: 'I agree to the '),
                                         TextSpan(
                                           text: 'terms',
                                           style: TextStyle(
@@ -259,7 +259,7 @@ class _RegisterState extends State<Register> {
                                             decoration: TextDecoration.underline,
                                           ),
                                         ),
-                                        const TextSpan(text: ' and '),
+                                        TextSpan(text: ' and '),
                                         TextSpan(
                                           text: 'conditions',
                                           style: TextStyle(
@@ -267,7 +267,7 @@ class _RegisterState extends State<Register> {
                                             decoration: TextDecoration.underline,
                                           ),
                                         ),
-                                        const TextSpan(text: '.'),
+                                        TextSpan(text: '.'),
                                       ],
                                     ),
                                   ),

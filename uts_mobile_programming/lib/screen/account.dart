@@ -48,7 +48,7 @@ class _AccountState extends State<Account> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to log out')),
+        const SnackBar(content: Text('Failed to log out')),
       );
     }
   }
@@ -120,7 +120,7 @@ class _AccountState extends State<Account> {
         actions: [],
       ),
       body: isLoading 
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(30),

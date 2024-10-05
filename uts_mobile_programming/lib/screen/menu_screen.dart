@@ -5,6 +5,8 @@ import 'package:uts_mobile_programming/widget/app_bar_widget.dart';
 import 'package:intl/intl.dart';
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }
@@ -215,7 +217,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       },
                     ),
                   );
-                }).toList(),
+                }),
               if (cartItems.isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -231,11 +233,11 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                       );
                     },
-                    child: const Text('Lanjutkan ke Pembayaran'),
                     style: ElevatedButton.styleFrom(
                       minimumSize:
                           const Size(double.infinity, 40), // Full width button
                     ),
+                    child: const Text('Lanjutkan ke Pembayaran'),
                   ),
                 ),
             ],

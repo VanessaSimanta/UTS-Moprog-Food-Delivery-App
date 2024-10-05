@@ -9,7 +9,7 @@ import 'package:uts_mobile_programming/services/user_services.dart';
 import 'package:uts_mobile_programming/loginComponents/button.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -130,7 +130,7 @@ class _LoginState extends State<Login> {
 
                   const SizedBox(height: 25),
 
-                  Button(),
+                  const Button(),
                   // login button
                   // SizedBox(
                   //   width: double.infinity,
