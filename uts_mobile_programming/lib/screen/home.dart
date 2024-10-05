@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _pages = [
     const HomePageContent(),
-    const MenuScreen(),
+    MenuScreen(),
     const PromotionPage(),
     const Account(),
   ];
@@ -310,8 +310,6 @@ class HomePageContent extends StatelessWidget {
 }
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -321,8 +319,8 @@ class _SettingsScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(
-        title: Text('Settings'),
+      appBar: AppBarWidget(
+        title: const Text('Settings'),
       ),
       body: ListView(
         children: [

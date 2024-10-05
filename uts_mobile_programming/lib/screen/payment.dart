@@ -96,12 +96,12 @@ class _PaymentPageState extends State<PaymentPage> {
                                 'Processing payment via $selectedPaymentMethod...')),
                       );
                     },
+              child: const Text('Pay now'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 textStyle: const TextStyle(fontSize: 18),
                 minimumSize: const Size(double.infinity, 50), // Full width button
               ),
-              child: const Text('Pay now'),
             ),
           ],
         ),

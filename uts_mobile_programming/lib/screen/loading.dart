@@ -7,8 +7,6 @@ import 'package:uts_mobile_programming/screen/login.dart';
 
 //LOADING SCREEN 
 class Loading extends StatefulWidget {
-  const Loading({super.key});
-
   @override
   _LoadingState createState() => _LoadingState();
 }
@@ -22,7 +20,7 @@ class _LoadingState extends State<Loading> {
   //token kosong masuk ke login
   if (token == '') {
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const Login()), 
+      MaterialPageRoute(builder: (context) => Login()), 
       (route) => false
     );
     //udah ada token langsung ke home
@@ -30,13 +28,13 @@ class _LoadingState extends State<Loading> {
     ApiResponse response = await getUserDetail();
     if (response.error == null) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const Home()), 
+        MaterialPageRoute(builder: (context) => Home()), 
         (route) => false
       );
       //error masuk ke login
     } else if (response.error == unathorized) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const Login()), 
+        MaterialPageRoute(builder: (context) => Login()), 
         (route) => false
       );
     } else {
@@ -58,7 +56,7 @@ class _LoadingState extends State<Loading> {
     return Container(
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
-      child: const Center(
+      child: Center(
         child: CircularProgressIndicator(),
       ),
     );

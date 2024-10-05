@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                 'reviews': 20,
               }),
         },
-        home: const Loading()
+        home: Loading()
     );
   }
 }
