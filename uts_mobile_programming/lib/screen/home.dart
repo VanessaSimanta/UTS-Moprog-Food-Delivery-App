@@ -11,6 +11,8 @@ import 'package:uts_mobile_programming/screen/search.dart';
 import 'package:uts_mobile_programming/screen/account.dart';
 import 'package:uts_mobile_programming/screen/help_Center.dart';
 import 'package:uts_mobile_programming/screen/item_menu.dart';
+import 'package:provider/provider.dart';
+import 'package:uts_mobile_programming/models/cart_model.dart';
 
 //HOME SCREEN
 class Home extends StatefulWidget {
@@ -48,6 +50,7 @@ class _HomeState extends State<Home> {
 
 class HomePageContent extends StatelessWidget {
   const HomePageContent({super.key});
+  
 
   //Function untuk sort item popular based on ratings
   List<Map<String, dynamic>> getPopularItems() {
@@ -102,9 +105,17 @@ class HomePageContent extends StatelessWidget {
         showBackArrow: false,
         actions: [
           IconButton(
+            icon: const Icon(Icons.shopping_cart,
+            color: Color.fromARGB(255, 0, 0, 0),),
+            onPressed: () {
+              Provider.of<CartModel>(context, listen: false)
+                                  .showCart(context); 
+            },
+          ),
+          IconButton(
             icon: const Icon(
               Icons.help,
-              color: Color(0xFFFFF8F0),
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
             onPressed: () {
               Navigator.push(
@@ -116,7 +127,7 @@ class HomePageContent extends StatelessWidget {
           IconButton(
             icon: const Icon(
               Icons.settings,
-              color: Color(0xFFFFF8F0),
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
             onPressed: () {
               Navigator.push(

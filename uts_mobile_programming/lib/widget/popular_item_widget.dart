@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_programming/screen/detail_menu_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:uts_mobile_programming/models/cart_model.dart';
 
 class PopularItemWidget extends StatelessWidget {
   final List<Map<String, dynamic>> items;
@@ -32,7 +34,7 @@ class PopularItemWidget extends StatelessWidget {
                 },
                 child: Container(
                   width: 170,
-                  height: 245,
+                  height: 320,
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFF8F0),
                     borderRadius: BorderRadius.circular(5),
@@ -82,19 +84,41 @@ class PopularItemWidget extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '${item['rating']}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  '${item['rating']}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(width: 4.0),
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 18,
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 4.0),
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 18,
+                            const SizedBox(height: 8), // Jarak antara rating dan tombol
+                            ElevatedButton(
+                              onPressed: () {
+                                Provider.of<CartModel>(context, listen: false)
+                                    .addItem(item); 
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFFF8811),
+                                foregroundColor: Colors.black,
+                                elevation: 5,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: const Text('Tambah'),
                             ),
                           ],
                         ),
